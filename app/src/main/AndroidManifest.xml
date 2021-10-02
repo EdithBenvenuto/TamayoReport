@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TamayoReport">
         <activity
+            android:name=".Reporte"
+            android:exported="true" />
+        <activity
             android:name=".RegistroActivity"
             android:exported="true" />
         <activity
