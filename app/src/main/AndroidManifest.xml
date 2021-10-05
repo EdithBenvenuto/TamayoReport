@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TamayoReport">
         <activity
+            android:name=".CategoriesActivity"
+            android:exported="true" />
+        <activity
+            android:name=".HomeScreenLoggedActivity"
+            android:exported="true" />
+        <activity
             android:name=".Reporte"
             android:exported="true" />
         <activity

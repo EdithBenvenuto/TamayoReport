@@ -41,8 +41,8 @@
             android:layout_height="55dp"
             android:layout_marginBottom="72dp"
             android:ems="10"
+            android:hint="Descripción"
             android:inputType="textPersonName"
-            android:text="Descripción"
             app:layout_constraintBottom_toTopOf="@+id/btnGetCurrentLocation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.491"
@@ -89,7 +89,7 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/categoriaReporte"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Reporte"

@@ -36,14 +36,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/search" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="Parque Rufino y Olga Tamayo"
+        android:text="Parque Rufino y Olga TAMAYO"
+        android:textAlignment="center"
         android:textColor="#262626"
-        android:textSize="24sp"
+        android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +63,7 @@
         app:srcCompat="@drawable/tamayoreport3" />
 
     <Button
-        android:id="@+id/inicioSesion"
+        android:id="@+id/newReport"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
