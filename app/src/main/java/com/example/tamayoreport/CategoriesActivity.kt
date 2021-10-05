@@ -34,12 +34,12 @@ class CategoriesActivity : AppCompatActivity() {
 
         luminariasLayout.setOnClickListener(layoutClickListener("Luminarias"))
         basuraLayout.setOnClickListener(layoutClickListener("Basura"))
-        hecesPerroLayout.setOnClickListener(layoutClickListener("Heces de perro"))
-        ramasLayout.setOnClickListener(layoutClickListener("Ramas"))
+        hecesPerroLayout.setOnClickListener(layoutClickListener("Heces de Perro"))
+        ramasLayout.setOnClickListener(layoutClickListener("Ramas Obstruyendo el Paso"))
         perroSinCorreaLayout.setOnClickListener(layoutClickListener("Perro sin correa"))
-        hierbaCrecidaLayout.setOnClickListener(layoutClickListener("Hierba crecida"))
-        desperfInstLayout.setOnClickListener(layoutClickListener("Desperfecto en instalaciones"))
-        malUsoLayout.setOnClickListener(layoutClickListener("Mal uso de instalaciones"))
+        hierbaCrecidaLayout.setOnClickListener(layoutClickListener("Hierba Crecida"))
+        desperfInstLayout.setOnClickListener(layoutClickListener("Desperfecto en Instalaciones"))
+        malUsoLayout.setOnClickListener(layoutClickListener("Mal uso de instalaciones o faltas al reglamento"))
         otrosLayout.setOnClickListener(layoutClickListener("Otros"))
     }
     private fun layoutClickListener(s:String): View.OnClickListener?{
