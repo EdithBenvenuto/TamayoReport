@@ -164,6 +164,9 @@ class Reporte : AppCompatActivity() {
             Toast.makeText(this@Reporte, "Datos enviados", Toast.LENGTH_SHORT).show()
             /*var m_Text: String = ""
             val sb = StringBuffer()*/
+            val switchActivityIntent = Intent(applicationContext, PostReporteActivity::class.java)
+            startActivity(switchActivityIntent);
+
         }
     }
 
