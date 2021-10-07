@@ -3,11 +3,8 @@ package com.example.tamayoreport
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Layout
 import android.view.View
-import android.widget.Button
 import android.widget.RelativeLayout
-import android.widget.Toast
 
 class CategoriesActivity : AppCompatActivity() {
     lateinit var luminariasLayout: RelativeLayout
