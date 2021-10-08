@@ -16,6 +16,16 @@ const UsersSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    admin:{
+        adminType :{type: String, required: false, default: 'usuario'},
+        admin:{type: Boolean, required: true, default: false}
+    },
+    //helps verify weather user is online or offline.
+    online:{
+        type: Boolean,
+        required: false,
+        default: false
     }
 });
 
