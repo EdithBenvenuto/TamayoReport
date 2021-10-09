@@ -3,7 +3,7 @@ const UserService = require('../../services/user');
 // Now the controller is using the services associated to the report resource.
 // Here, we use the req,res, extracting whatever the service needs to work.
 
-modules.exports = {
+module.exports = {
     createUser: async(req,res,next) =>{
         const online = false;
         const admin ={adminType: 'usuario', admin: false};

@@ -9,11 +9,11 @@ const ReportModel = require('../models/Report');
 
 const createReport = async (foto, fechaReporte, categoria,ubicacion,descripcion,estado) =>{
     const report =new ReportModel({
-        fechaReporte=fechaReporte,
-        categoria = categoria,
-        ubicacion = ubicacion,
-        descripcion = descripcion,
-        estado = "Recibido"
+        fechaReporte:fechaReporte,
+        categoria: categoria,
+        ubicacion: ubicacion,
+        descripcion : descripcion,
+        estado : "Recibido"
     });
 
     if(foto) report.foto = foto.filename;
