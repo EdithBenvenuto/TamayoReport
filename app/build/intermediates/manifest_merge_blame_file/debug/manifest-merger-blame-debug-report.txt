@@ -1,0 +1,84 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.tamayoreport"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="23"
+8-->C:\Users\anave\OneDrive\Documentos\GitHub\TamayoReport\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="31" />
+9-->C:\Users\anave\OneDrive\Documentos\GitHub\TamayoReport\app\src\main\AndroidManifest.xml
+10
+11    <application
+11-->C:\Users\anave\OneDrive\Documentos\GitHub\TamayoReport\app\src\main\AndroidManifest.xml:5:5-30:19
+12        android:allowBackup="true"
+12-->C:\Users\anave\OneDrive\Documentos\GitHub\TamayoReport\app\src\main\AndroidManifest.xml:6:9-35
+13        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+13-->[androidx.core:core:1.6.0] C:\Users\anave\.gradle\caches\transforms-3\391be5480a108ac5db84a57a515a7b41\transformed\core-1.6.0\AndroidManifest.xml:24:18-86
+14        android:debuggable="true"
+15        android:extractNativeLibs="false"
+16        android:icon="@mipmap/ic_launcher"
+16-->C:\Users\anave\OneDrive\Documentos\GitHub\TamayoReport\app\src\main\AndroidManifest.xml:7:9-43
+17        android:label="@string/app_name"
+17-->C:\Users\anave\OneDrive\Documentos\GitHub\TamayoReport\app\src\main\AndroidManifest.xml:8:9-41
+18        android:roundIcon="@mipmap/ic_launcher_round"
+18-->C:\Users\anave\OneDrive\Documentos\GitHub\TamayoReport\app\src\main\AndroidManifest.xml:9:9-54
+19        android:supportsRtl="true"
+19-->C:\Users\anave\OneDrive\Documentos\GitHub\TamayoReport\app\src\main\AndroidManifest.xml:10:9-35
+20        android:testOnly="true"
+21        android:theme="@style/Theme.TamayoReport" >
+21-->C:\Users\anave\OneDrive\Documentos\GitHub\TamayoReport\app\src\main\AndroidManifest.xml:11:9-50
+22        <activity
+22-->C:\Users\anave\OneDrive\Documentos\GitHub\TamayoReport\app\src\main\AndroidManifest.xml:12:9-14:39
+23            android:name="com.example.tamayoreport.Reporte"
+23-->C:\Users\anave\OneDrive\Documentos\GitHub\TamayoReport\app\src\main\AndroidManifest.xml:13:13-36
+24            android:exported="true" />
+24-->C:\Users\anave\OneDrive\Documentos\GitHub\TamayoReport\app\src\main\AndroidManifest.xml:14:13-36
+25        <activity
+25-->C:\Users\anave\OneDrive\Documentos\GitHub\TamayoReport\app\src\main\AndroidManifest.xml:15:9-17:39
+26            android:name="com.example.tamayoreport.RegistroActivity"
+26-->C:\Users\anave\OneDrive\Documentos\GitHub\TamayoReport\app\src\main\AndroidManifest.xml:16:13-45
+27            android:exported="true" />
+27-->C:\Users\anave\OneDrive\Documentos\GitHub\TamayoReport\app\src\main\AndroidManifest.xml:17:13-36
+28        <activity
+28-->C:\Users\anave\OneDrive\Documentos\GitHub\TamayoReport\app\src\main\AndroidManifest.xml:18:9-20:39
+29            android:name="com.example.tamayoreport.LoginActivity"
+29-->C:\Users\anave\OneDrive\Documentos\GitHub\TamayoReport\app\src\main\AndroidManifest.xml:19:13-42
+30            android:exported="true" />
+30-->C:\Users\anave\OneDrive\Documentos\GitHub\TamayoReport\app\src\main\AndroidManifest.xml:20:13-36
+31        <activity
+31-->C:\Users\anave\OneDrive\Documentos\GitHub\TamayoReport\app\src\main\AndroidManifest.xml:21:9-29:20
+32            android:name="com.example.tamayoreport.MainActivity"
+32-->C:\Users\anave\OneDrive\Documentos\GitHub\TamayoReport\app\src\main\AndroidManifest.xml:22:13-41
+33            android:exported="true" >
+33-->C:\Users\anave\OneDrive\Documentos\GitHub\TamayoReport\app\src\main\AndroidManifest.xml:23:13-36
+34            <intent-filter>
+34-->C:\Users\anave\OneDrive\Documentos\GitHub\TamayoReport\app\src\main\AndroidManifest.xml:24:13-28:29
+35                <action android:name="android.intent.action.MAIN" />
+35-->C:\Users\anave\OneDrive\Documentos\GitHub\TamayoReport\app\src\main\AndroidManifest.xml:25:17-69
+35-->C:\Users\anave\OneDrive\Documentos\GitHub\TamayoReport\app\src\main\AndroidManifest.xml:25:25-66
+36
+37                <category android:name="android.intent.category.LAUNCHER" />
+37-->C:\Users\anave\OneDrive\Documentos\GitHub\TamayoReport\app\src\main\AndroidManifest.xml:27:17-77
+37-->C:\Users\anave\OneDrive\Documentos\GitHub\TamayoReport\app\src\main\AndroidManifest.xml:27:27-74
+38            </intent-filter>
+39        </activity>
+40        <activity
+40-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\anave\.gradle\caches\transforms-3\8720ca990768e299948a5cb3323b153e\transformed\jetified-play-services-base-17.5.0\AndroidManifest.xml:23:9-26:75
+41            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+41-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\anave\.gradle\caches\transforms-3\8720ca990768e299948a5cb3323b153e\transformed\jetified-play-services-base-17.5.0\AndroidManifest.xml:24:13-79
+42            android:exported="false"
+42-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\anave\.gradle\caches\transforms-3\8720ca990768e299948a5cb3323b153e\transformed\jetified-play-services-base-17.5.0\AndroidManifest.xml:25:13-37
+43            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+43-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\anave\.gradle\caches\transforms-3\8720ca990768e299948a5cb3323b153e\transformed\jetified-play-services-base-17.5.0\AndroidManifest.xml:26:13-72
+44
+45        <meta-data
+45-->[com.google.android.gms:play-services-basement:17.6.0] C:\Users\anave\.gradle\caches\transforms-3\3ade3dbd073fcc00b449d0cb94fc019d\transformed\jetified-play-services-basement-17.6.0\AndroidManifest.xml:23:9-25:69
+46            android:name="com.google.android.gms.version"
+46-->[com.google.android.gms:play-services-basement:17.6.0] C:\Users\anave\.gradle\caches\transforms-3\3ade3dbd073fcc00b449d0cb94fc019d\transformed\jetified-play-services-basement-17.6.0\AndroidManifest.xml:24:13-58
+47            android:value="@integer/google_play_services_version" />
+47-->[com.google.android.gms:play-services-basement:17.6.0] C:\Users\anave\.gradle\caches\transforms-3\3ade3dbd073fcc00b449d0cb94fc019d\transformed\jetified-play-services-basement-17.6.0\AndroidManifest.xml:25:13-66
+48    </application>
+49
+50</manifest>

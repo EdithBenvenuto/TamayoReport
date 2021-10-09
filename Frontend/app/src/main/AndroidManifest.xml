@@ -15,25 +15,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TamayoReport">
         <activity
-            android:name=".PostReporteActivity"
+            android:name=".controller.PostReporteActivity"
             android:exported="true" />
         <activity
-            android:name=".CategoriesActivity"
+            android:name=".controller.CategoriesActivity"
             android:exported="true" />
         <activity
-            android:name=".HomeScreenLoggedActivity"
+            android:name=".controller.HomeScreenLoggedActivity"
             android:exported="true" />
         <activity
-            android:name=".Reporte"
+            android:name=".controller.Reporte"
             android:exported="true" />
         <activity
-            android:name=".RegistroActivity"
+            android:name=".controller.RegistroActivity"
             android:exported="true" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".controller.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".controller.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
