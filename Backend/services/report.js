@@ -7,9 +7,9 @@ const ReportModel = require('../models/Report');
 // Now this service is providing whatever is needed to interact with the database but at the same time
 // validating the BLL requirements.
 
-const createReport = async (foto,categoria,ubicacion,descripcion,estado) =>{
+const createReport = async (foto, fechaReporte, categoria,ubicacion,descripcion,estado) =>{
     const report =new ReportModel({
-        fechaReporte=Date.now(),
+        fechaReporte=fechaReporte,
         categoria = categoria,
         ubicacion = ubicacion,
         descripcion = descripcion,
@@ -33,9 +33,9 @@ const getAllReports = async () =>{
     return reports;
 }
 
-const updateReport = async (id,categoria,foto,ubicacion,descripcion, keepPhoto) =>{
+const updateReport = async (id,categoria,fechaReporte,foto,ubicacion,descripcion, keepPhoto) =>{
     const report = await ReportModel.findById(id);
-    report.fechaReporte= Date.now();
+    report.fechaReporte= fechaReporte;
     report.categoria = categoria;
     report.ubicacion=ubicacion;
     report.descripcion=descripcion;

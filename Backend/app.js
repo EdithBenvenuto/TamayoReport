@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const app = express();
 
 // We connect to Mongo here
-const { mongoUrl } = require('./config');
+const { mongoUrl } = "mongodb://localhost/tamayoReport"
 console.log("Connecting to " + mongoUrl);
 // This long line is to avoid showing the warnings, otherwise we can do mongoose.connect(mongoUrl);
 mongoose.connect(mongoUrl, { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true });

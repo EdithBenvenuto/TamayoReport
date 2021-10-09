@@ -3,3 +3,7 @@ npm install -g nodemon
 npm install express --save
 npm install -save validator
 npm install -save bcryptjs
+npm install dotenv
+npm install jsonwebtoken
+npm install -S app-root-path
+npm install --save multer
