@@ -9,7 +9,7 @@ const UserController = require('../controllers/user');
 // Login
 router.put("/login", UserController.login);
 // Logout
-router.put("/login", UserController.logout);
+router.put("/logout", UserController.logout);
 // Create
 router.post("/", UserController.createUser);
 // Read one
