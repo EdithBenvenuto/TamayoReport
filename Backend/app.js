@@ -9,7 +9,7 @@ const mongoUrl ="mongodb://localhost/tamayoReport";
 console.log("Connecting to " + mongoUrl);
 
 // This long line is to avoid showing the warnings, otherwise we can do mongoose.connect(mongoUrl);
-mongoose.connect(mongoUrl, { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true });
+mongoose.connect(mongoUrl/* , { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true } */);
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once('open', function () { console.log('Connected to database server'); });
