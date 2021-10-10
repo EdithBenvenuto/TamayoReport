@@ -1,4 +1,4 @@
 package com.example.tamayoreport.model.entities
 
-class User (var name: String, var email: String, var password: String){
+class User (var name: String, var email: String, var password: String, admin: Admin){
 }

@@ -19,14 +19,21 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import com.example.tamayoreport.R
+import com.example.tamayoreport.Utils
+import com.example.tamayoreport.model.Model
+import com.example.tamayoreport.model.entities.Report
+import com.example.tamayoreport.model.repository.responseinterface.IAddReport
+import com.example.tamayoreport.model.repository.responseinterface.IDeleteProduct
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.CancellationTokenSource
 import com.google.android.material.snackbar.Snackbar
 import java.io.ByteArrayOutputStream
+import java.util.*
 
 class Reporte : AppCompatActivity() {
     lateinit var reportCategory:TextView
@@ -38,22 +45,23 @@ class Reporte : AppCompatActivity() {
     private lateinit var btnGetCurrentLocation: ImageButton
     private lateinit var btnTakePhoto: Button
     private lateinit var btnUbicacion: ImageButton
-    //private lateinit var imgPhoto: ImageView
     private lateinit var btnSend: Button
 
     private lateinit var cancellationTokenSource: CancellationTokenSource
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     private lateinit var txtCoordinates: TextView
-    var m_Text: String = ""
-    val sb = StringBuffer()
+    private lateinit var byteArray: ByteArray
+    private lateinit var locationTxt: String
+    private lateinit var category: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reporte)
         reportCategory=findViewById(R.id.reportCategory)
         val b = intent.extras
-        val value = b?.getString("key")
-        reportCategory.text = "Reporte "+value
+        category = b?.getString("key").toString()
+        reportCategory.text = "Reporte "+category
         //Toast.makeText(this, value, Toast.LENGTH_SHORT).show()
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this@Reporte)
@@ -71,6 +79,9 @@ class Reporte : AppCompatActivity() {
         btnSend.setOnClickListener(btnSend())
 
         txtCoordinates = findViewById(R.id.txtLocation)
+        byteArray = ByteArray(0)
+        locationTxt = ""
+        category = ""
     }
 
     private fun handlePermission(permission: String, requestCode: Int): Boolean {
@@ -117,7 +128,7 @@ class Reporte : AppCompatActivity() {
                 "currentLocationListener",
                 "Location obtained! ${location.toString()}"
             )
-            //val sb = StringBuffer()
+            val sb= StringBuffer()
 
             sb.append("Latitude: ").append(location.latitude).append(", ")
                 .append("Longitude: ").append(location.longitude).append(", ")
@@ -148,7 +159,7 @@ class Reporte : AppCompatActivity() {
             // Set up the buttons
             builder.setPositiveButton("OK", DialogInterface.OnClickListener { dialog, which ->
                 // Here you get get input text from the Edittext
-                m_Text = input.text.toString()
+                locationTxt = input.text.toString()
                 Toast.makeText(this@Reporte, "Ubicación obtenida", Toast.LENGTH_SHORT).show()
             })
             builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
@@ -159,12 +170,33 @@ class Reporte : AppCompatActivity() {
     private fun btnSend(): View.OnClickListener {
         return View.OnClickListener {
             //Aquí se ponen los datos que se mandan a la base de datos, también se manda a la siguiente pantalla
-            Toast.makeText(this@Reporte, "Datos enviados", Toast.LENGTH_SHORT).show()
-            /*var m_Text: String = ""
-            val sb = StringBuffer()*/
-            val switchActivityIntent = Intent(applicationContext, PostReporteActivity::class.java)
-            startActivity(switchActivityIntent);
+            //Toast.makeText(this@Reporte, "Datos enviados", Toast.LENGTH_SHORT).show()
+            val description = findViewById<EditText>(R.id.txtDescripcion).toString();
 
+            val report = Report(
+                "",
+                category,
+                null,
+                null,
+                locationTxt,
+                description,
+                "Unresolved"
+            )
+            Model(Utils.getToken(this)).addReport(report, byteArray, object : IAddReport{
+                    override fun onSuccess(product: Report?){
+                        Toast.makeText(this@Reporte, "Datos enviados", Toast.LENGTH_SHORT).show()
+                        val switchActivityIntent = Intent(applicationContext, PostReporteActivity::class.java)
+                        startActivity(switchActivityIntent);
+                    }
+                    override fun onNoSuccess(code: Int, message: String) {
+                        Toast.makeText(requireContext(), "Problem detected $code $message", Toast.LENGTH_SHORT).show()
+                    }
+
+                    override fun onFailure(t: Throwable) {
+                        Toast.makeText(requireContext(), "Network or server error occurred", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            )
         }
     }
 
@@ -190,7 +222,7 @@ class Reporte : AppCompatActivity() {
                 val bmp = data?.extras?.get("data") as Bitmap
 
                 bmp.compress(Bitmap.CompressFormat.PNG, 100, stream)
-                val byteArray = stream.toByteArray()
+                byteArray = stream.toByteArray()
 
                 // We have the image with new quality, we can do anything to it
                 // For example, show it in an ImageView

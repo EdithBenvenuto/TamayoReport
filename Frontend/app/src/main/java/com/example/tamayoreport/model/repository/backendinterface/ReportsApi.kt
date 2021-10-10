@@ -6,8 +6,8 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface ReportsApi {
-    @GET("reports/{reportId}")
-    fun getProduct(@Path("reportId") productId: String): Call<Report>
+    @GET("reports/{id}")
+    fun getProduct(@Path("id") productId: String): Call<Report>
 
     @GET("reports/")
     fun getProducts(): Call<List<Report>>
@@ -20,13 +20,13 @@ interface ReportsApi {
     ): Call<Report>
 
     @Multipart
-    @PUT("reports/{reportId}")
+    @PUT("reports/{id}")
     fun updateProduct(
-        @Path("reportId") productId: String,
+        @Path("id") productId: String,
         @Part product: MultipartBody.Part,
         @Part productPhoto: MultipartBody.Part?
     ): Call<Report>
 
-    @DELETE("reports/{reportId}")
+    @DELETE("reports/{id}")
     fun deleteProduct(@Path("reportId") productId: String): Call<Report>
 }

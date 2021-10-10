@@ -1,11 +1,15 @@
 package com.example.tamayoreport.model.entities
 
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 class Report (
     @SerializedName("_id") var id: String,
-    var description: String,
+    var category: String,
+    var photo: String?,
+    var date: Date,
     var ubication: String,
-    var photo: String?
+    var description: String,
+    var state:String
 ){
 }
