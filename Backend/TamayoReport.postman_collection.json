@@ -54,6 +54,36 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "rufino",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "rufino@tamayo.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "rufino",
+							"type": "text"
+						},
+						{
+							"key": "admin",
+							"value": "treue",
+							"type": "text"
+						},
+						{
+							"key": "online",
+							"value": "false",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
 					"raw": "127.0.0.1:3000/users/",
 					"host": [
@@ -161,7 +191,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "127.0.0.1:3000/reports/",
+					"raw": "127.0.0.1:3000/reports/?categoria&foto&fechaReporte&ubicacion&descripcion&estado",
 					"host": [
 						"127",
 						"0",
@@ -172,6 +202,32 @@
 					"path": [
 						"reports",
 						""
+					],
+					"query": [
+						{
+							"key": "categoria",
+							"value": null
+						},
+						{
+							"key": "foto",
+							"value": null
+						},
+						{
+							"key": "fechaReporte",
+							"value": null
+						},
+						{
+							"key": "ubicacion",
+							"value": null
+						},
+						{
+							"key": "descripcion",
+							"value": null
+						},
+						{
+							"key": "estado",
+							"value": null
+						}
 					]
 				}
 			},
