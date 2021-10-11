@@ -40,13 +40,14 @@ class RegistroActivity : AppCompatActivity() {
         return View.OnClickListener{
             Toast.makeText(this, "Validar datos registro", Toast.LENGTH_SHORT).show()
 
-            val name = findViewById<EditText>(R.id.txtNombre).toString();
-            val lastName = findViewById<EditText>(R.id.txtApellido).toString();
-            val email = findViewById<EditText>(R.id.txtCorreoRegistro).toString();
-            val password = findViewById<EditText>(R.id.txtContraRegistro).toString();
-            val passwordConfirmation = findViewById<EditText>(R.id.txtConfContra).toString();
-
+            var name = findViewById<EditText>(R.id.txtNombre).text.toString();
+            val lastName = findViewById<EditText>(R.id.txtApellido).text.toString();
+            val email = findViewById<EditText>(R.id.txtCorreoRegistro).text.toString();
+            val password = findViewById<EditText>(R.id.txtContraRegistro).text.toString();
+            val passwordConfirmation = findViewById<EditText>(R.id.txtConfContra).text.toString();
+            name += " $lastName"
             if (password == passwordConfirmation){
+                Toast.makeText(this, name, Toast.LENGTH_SHORT).show()
                 val admin = Admin(
                     "none",
                     false

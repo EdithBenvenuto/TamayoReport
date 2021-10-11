@@ -1,0 +1,12 @@
+------CREATE USER--------
+// Use raw test option
+
+{
+    "name":"rufino",
+    "email":"Olga@report.com",
+    "password":"1234"
+}
+
+{
+    
+}

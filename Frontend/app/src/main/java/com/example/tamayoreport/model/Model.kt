@@ -191,7 +191,6 @@ class Model (private val token:String){
         })
     }
     fun addUsers(product: User, callback: IAddUser) {
-        val userAsJson = Gson().toJson(product)
 
         val retrofit = RemoteRepository.getRetrofitInstance(token)
         val callAddUser = retrofit.create(UsersApi::class.java).addUsers(product)
