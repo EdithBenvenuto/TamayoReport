@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import com.example.tamayoreport.controller.CategoriesActivity
+import com.example.tamayoreport.controller.HomeScreenLoggedActivity
 
 class PostReporteActivity : AppCompatActivity() {
     lateinit var otroReporte: Button

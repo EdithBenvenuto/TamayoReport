@@ -18,10 +18,10 @@
             android:name=".PostReporteActivity"
             android:exported="true" />
         <activity
-            android:name=".CategoriesActivity"
+            android:name=".controller.CategoriesActivity"
             android:exported="true" />
         <activity
-            android:name=".HomeScreenLoggedActivity"
+            android:name=".controller.HomeScreenLoggedActivity"
             android:exported="true" />
         <activity
             android:name=".Reporte"
@@ -30,7 +30,7 @@
             android:name=".RegistroActivity"
             android:exported="true" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".controller.LoginActivity"
             android:exported="true" />
         <activity
             android:name=".MainActivity"

@@ -1,10 +1,12 @@
-package com.example.tamayoreport
+package com.example.tamayoreport.controller
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.RelativeLayout
+import com.example.tamayoreport.R
+import com.example.tamayoreport.Reporte
 
 class CategoriesActivity : AppCompatActivity() {
     lateinit var luminariasLayout: RelativeLayout

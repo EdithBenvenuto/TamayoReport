@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
+import com.example.tamayoreport.controller.HomeScreenLoggedActivity
+import com.example.tamayoreport.controller.LoginActivity
 
 class RegistroActivity : AppCompatActivity() {
     lateinit var iniciarSesion: Button
