@@ -22,11 +22,11 @@ const logout = async(id) =>{
 };
 const createUser = async (name, email, password, admin, online)=>{
     const user = new UserModel({
-        name = name,
-        email= email,
-        password = password,
-        admin = admin,
-        online = online  
+        name : name,
+        email : email,
+        password : password,
+        admin : admin,
+        online : online  
     });
     const newUser = await user.save();
     return newUser;

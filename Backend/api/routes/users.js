@@ -9,7 +9,7 @@ const UserController = require('../controllers/user');
 // Login
 router.put("/login", UserController.login);
 // Logout
-router.put("/login", UserController.logout);
+router.put("/logout", UserController.logout);
 // Create
 router.post("/", UserController.createUser);
 // Read one
@@ -17,5 +17,5 @@ router.get('/:id', requireLogin, UserController.getUser);
 // Update user
 router.put('/:id', requireLogin, UserController.updateUser);
 // Delete user
-route.delete('/:id', requireLogin, UserController.deleteUser);
+router.delete('/:id', requireLogin, UserController.deleteUser);
 module.exports = router;

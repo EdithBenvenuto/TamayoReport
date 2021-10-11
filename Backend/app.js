@@ -3,10 +3,13 @@ const mongoose = require('mongoose');
 const app = express();
 
 // We connect to Mongo here
-const { mongoUrl } = require('./config');
+//const { mongoUrl } = require('./config');
+//console.log("Connecting to " + mongoUrl);
+const mongoUrl ="mongodb://localhost/tamayoReport";
 console.log("Connecting to " + mongoUrl);
+
 // This long line is to avoid showing the warnings, otherwise we can do mongoose.connect(mongoUrl);
-mongoose.connect(mongoUrl, { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true });
+mongoose.connect(mongoUrl/* , { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true } */);
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.once('open', function () { console.log('Connected to database server'); });
@@ -20,3 +23,7 @@ app.use(require('./api'));
 
 
 module.exports = app;
+
+app.listen(3000, () => {
+    console.log('Server up and running');
+});
