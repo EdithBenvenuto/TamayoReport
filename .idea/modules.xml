@@ -3,6 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/TamayoReport.iml" filepath="$PROJECT_DIR$/.idea/TamayoReport.iml" />
+<<<<<<< HEAD
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/TamayoReport.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/TamayoReport.app.iml" />
+>>>>>>> eadcce6dc28a568fcef65588cb79da2c917d3897
     </modules>
   </component>
 </project>
