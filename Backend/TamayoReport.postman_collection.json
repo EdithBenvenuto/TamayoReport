@@ -71,16 +71,6 @@
 							"key": "password",
 							"value": "rufino",
 							"type": "text"
-						},
-						{
-							"key": "admin",
-							"value": "treue",
-							"type": "text"
-						},
-						{
-							"key": "online",
-							"value": "false",
-							"type": "text"
 						}
 					]
 				},
