@@ -172,18 +172,13 @@ class Reporte : AppCompatActivity() {
             //Aquí se ponen los datos que se mandan a la base de datos, también se manda a la siguiente pantalla
             //Toast.makeText(this@Reporte, "Datos enviados", Toast.LENGTH_SHORT).show()
             val description = findViewById<EditText>(R.id.txtDescripcion).toString();
-            var location : String = ""
-            if(txtCoordinates.toString() == "Location is: unknown" ){
-                location = txtCoordinates.toString()
-            }else{
-                location = txtCoordinates.toString()
-            }
+
             val report = Report(
                 "",
                 category,
                 null,
-                "",
-                location,
+                null,
+                locationTxt,
                 description,
                 "Unresolved"
             )
@@ -194,11 +189,11 @@ class Reporte : AppCompatActivity() {
                         startActivity(switchActivityIntent);
                     }
                     override fun onNoSuccess(code: Int, message: String) {
-                        Toast.makeText(this@Reporte, "Problem detected $code $message", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Problem detected $code $message", Toast.LENGTH_SHORT).show()
                     }
 
                     override fun onFailure(t: Throwable) {
-                        Toast.makeText(this@Reporte, "Network or server error occurred", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Network or server error occurred", Toast.LENGTH_SHORT).show()
                     }
                 }
             )

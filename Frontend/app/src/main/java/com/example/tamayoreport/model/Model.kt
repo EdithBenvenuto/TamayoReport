@@ -191,11 +191,13 @@ class Model (private val token:String){
         })
     }
     fun addUsers(product: User, callback: IAddUser) {
+
         val userAsJson = Gson().toJson(product)
 
         val retrofit = RemoteRepository.getRetrofitInstance(token)
-        val callAddUser = retrofit.create(UsersApi::class.java).addUsers(product)
-
+        // val callAddProduct = retrofit.create(ProductsApi::class.java).insertProduct(productPart, partProductPhoto)
+        val callAddUser = retrofit.create(UsersApi::class.java)
+                .addUsers(product)
 
         callAddUser.enqueue(object : Callback<User?> {
             override fun onResponse(call: Call<User?>, response: Response<User?>) {
@@ -255,6 +257,7 @@ class Model (private val token:String){
                     callback.onNoSuccess(response.code(), message)
                 }
             }
+
             override fun onFailure(call: Call<User?>, t: Throwable) {
                 callback.onFailure(t)
             }

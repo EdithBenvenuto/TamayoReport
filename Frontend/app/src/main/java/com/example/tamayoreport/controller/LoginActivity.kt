@@ -57,6 +57,7 @@ class LoginActivity : AppCompatActivity() {
                         ).show()
                     }
                 }
+
                 override fun onNoSuccess(code: Int, message: String) {
                     Toast.makeText(
                         this@LoginActivity,

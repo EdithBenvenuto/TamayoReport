@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 const ReportsSchema = new mongoose.Schema({
     idUsuario : {type: String, required: true},
-    categoria : {type: String, required: true, default: 'other'},
     foto : {type:String, required:true},
     fechaReporte:{type:Date, required:false},
     ubicacion : {type:String, required:true},

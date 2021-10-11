@@ -5,18 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import com.example.tamayoreport.R
-import com.example.tamayoreport.Utils
-import com.example.tamayoreport.model.Model
-import com.example.tamayoreport.model.entities.Admin
-import com.example.tamayoreport.model.entities.Report
-import com.example.tamayoreport.model.entities.User
-import com.example.tamayoreport.model.repository.responseinterface.IAddReport
-import com.example.tamayoreport.model.repository.responseinterface.IAddUser
-import com.example.tamayoreport.model.repository.responseinterface.IDeleteProduct
-import com.google.android.gms.tasks.OnSuccessListener
 
 class RegistroActivity : AppCompatActivity() {
     lateinit var iniciarSesion: Button
@@ -37,45 +27,11 @@ class RegistroActivity : AppCompatActivity() {
     }
 
     private fun registerClickListener(): View.OnClickListener?{
+
         return View.OnClickListener{
             Toast.makeText(this, "Validar datos registro", Toast.LENGTH_SHORT).show()
-
-            val name = findViewById<EditText>(R.id.txtNombre).toString();
-            val lastName = findViewById<EditText>(R.id.txtApellido).toString();
-            val email = findViewById<EditText>(R.id.txtCorreoRegistro).toString();
-            val password = findViewById<EditText>(R.id.txtContraRegistro).toString();
-            val passwordConfirmation = findViewById<EditText>(R.id.txtConfContra).toString();
-
-            if (password == passwordConfirmation){
-                val admin = Admin(
-                    "none",
-                    false
-                )
-                val user = User(
-                    name,
-                    email,
-                    password,
-                    admin
-                )
-                Model(Utils.getToken(this)).addUsers(user, object: IAddUser{
-                    override fun onSuccess(product: User?){
-                        Toast.makeText(this@RegistroActivity, "Datos enviados", Toast.LENGTH_SHORT).show()
-                        val switchActivityIntent = Intent(applicationContext, HomeScreenLoggedActivity::class.java)
-                        startActivity(switchActivityIntent);
-                    }
-                    override fun onNoSuccess(code: Int, message: String) {
-                        Toast.makeText(this@RegistroActivity, "Problem detected $code $message", Toast.LENGTH_SHORT).show()
-                    }
-
-                    override fun onFailure(t: Throwable) {
-                        Toast.makeText(this@RegistroActivity, "Network or server error occurred", Toast.LENGTH_SHORT).show()
-                    }
-                }
-                )
-            }
-            else{
-                Toast.makeText(this@RegistroActivity, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
-            }
+            val switchActivityIntent = Intent(applicationContext, HomeScreenLoggedActivity::class.java)
+            startActivity(switchActivityIntent);
         }
     }
 

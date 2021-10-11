@@ -6,10 +6,10 @@ const ReportService = require('../../services/report');
 module.exports = {
 
     createReport: async(req, res, next) =>{
-        let {categoria,ubicacion,descripcion,estado} = JSON.parse(req.body.report);
+        let {ubicacion,descripcion,estado} = JSON.parse(req.body.report);
         
         try{
-            const report = await ReportService.createReport(req.foto,categoria,ubicacion,descripcion,estado);
+            const report = await ReportService.createReport(req.foto,ubicacion,descripcion,estado);
             res.status(201).json(report); //201 = created
         }catch (err){
             res.status(500).json({ "message": `error: ${err.message}` });
@@ -44,12 +44,12 @@ module.exports = {
 
     updateReport: async (req, res, next) => {
         const reportId = req.params.id;
-        const {categoria,ubicacion,descripcion,estado} = JSON.parse(req.body.report);
+        const { ubicacion,descripcion } = JSON.parse(req.body.report);
         const { keepPhoto } = req.body;
         try {
             const report = await ReportService.getReport(reportId);
             if (report) {
-                const updateReport = await ReportService.updateReport(reportId, req.foto,categoria,ubicacion, descripcion,estado, keepPhoto);
+                const updateReport = await ReportService.updateReport(reportId, req.foto, ubicacion, descripcion, keepPhoto)
                 res.json(updateReport);
             } else {
                 res.status(404).json({ "message": `Report with id ${reportId} does not exist` });

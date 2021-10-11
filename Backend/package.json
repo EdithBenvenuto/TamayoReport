@@ -9,15 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
-<<<<<<< HEAD
     "mongoose": "^6.0.9"
   },
   "description": ""
-=======
-    "mongoose": "^6.0.10",
-    "validator": "^13.6.0"
-  }
->>>>>>> eadcce6dc28a568fcef65588cb79da2c917d3897
 }

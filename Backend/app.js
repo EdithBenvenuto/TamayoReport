@@ -18,5 +18,4 @@ app.use(express.json())
 // The idea is to use that to configure all possible routes for our app (the ones regarding resources)
 app.use(require('./api'));
 
-
 module.exports = app;
