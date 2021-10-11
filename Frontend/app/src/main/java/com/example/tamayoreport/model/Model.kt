@@ -196,7 +196,6 @@ class Model (private val token:String){
         val retrofit = RemoteRepository.getRetrofitInstance(token)
         val callAddUser = retrofit.create(UsersApi::class.java).addUsers(product)
 
-
         callAddUser.enqueue(object : Callback<User?> {
             override fun onResponse(call: Call<User?>, response: Response<User?>) {
                 if (response.isSuccessful) {

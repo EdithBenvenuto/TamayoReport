@@ -40,12 +40,10 @@ class LoginActivity : AppCompatActivity() {
 
             Model(Utils.getToken(this)).login(user, object : ILogin {
                 override fun onSuccess(token: JwtToken?) {
-                    Toast.makeText(this@LoginActivity, "Welcome boi", Toast.LENGTH_SHORT).show()
                     if (token != null) {
                         Utils.saveToken(token, this@LoginActivity.applicationContext)
                         // This updates the HttpClient that at this moment might not have a valid token!
                         RemoteRepository.updateRemoteReferences(token.token, this@LoginActivity);
-
                         // TODO: SEND THE FIREBASE TOKEN (fcmToken, userId)
                         advanceToMainActivity()
                     } else {
