@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { secret } = require('../../config');
 
+
 // Middleware function to require a login
 function requireLogin(req, res, next) {
 

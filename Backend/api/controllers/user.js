@@ -1,4 +1,5 @@
 const UserService = require('../../services/user');
+const {generateToken} = require('../middlewares/authentication')
 
 // Now the controller is using the services associated to the report resource.
 // Here, we use the req,res, extracting whatever the service needs to work.
@@ -23,8 +24,8 @@ module.exports = {
         try{
             const loginUser = await UserService.login(email,password);
             if(loginUser){
-                const accessToken = generateToken(user);
-                res.status(200).json({ token: accessToken });
+                const accessToken = generateToken(loginUser);
+                res.status(200).json({ token: accessToken, id: loginUser._id});
             }else{
                 res.status(401).json({ "message": "Wrong Credentials" });
                 console.log(`Invalid credentials ${email}:${password}`);
