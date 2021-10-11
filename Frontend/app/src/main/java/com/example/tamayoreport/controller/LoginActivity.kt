@@ -18,7 +18,7 @@ class LoginActivity : AppCompatActivity() {
         iniciarSesion=findViewById<Button>(R.id.inicioSesion)
         registro=findViewById<Button>(R.id.registrate)
         iniciarSesion.setOnClickListener(loginClickListener())
-        registro.setOnClickListener(registerClickListener())
+        registro.setOnClickListener(registerClickListener()) // alo polisia no se usar github
     }
     private fun loginClickListener(): View.OnClickListener?{
         return View.OnClickListener{
