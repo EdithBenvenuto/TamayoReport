@@ -27,6 +27,9 @@ interface ReportsApi {
         @Part productPhoto: MultipartBody.Part?
     ): Call<Report>
 
+    @GET("reports/{UserId}")
+    fun getUserReports(@Path("UserId") userId: String): Call<List<Report>>
+    
     @DELETE("reports/{id}")
     fun deleteProduct(@Path("reportId") productId: String): Call<Report>
 }

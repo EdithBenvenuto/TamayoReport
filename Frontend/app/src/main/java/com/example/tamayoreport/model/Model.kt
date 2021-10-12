@@ -92,6 +92,23 @@ class Model (private val token:String){
             }
         })
     }
+    fun getUsersReports(userId: String, callback: IGetReports) {
+        val retrofit = RemoteRepository.getRetrofitInstance(token)
+        val callGetUser = retrofit.create(ReportsApi::class.java).getUserReports(userId)
+        callGetUser.enqueue(object : Callback<List<Report>?> {
+            override fun onResponse(
+                call: Call<List<Report>?>,
+                response: Response<List<Report>?>
+            ) {
+                if (response.isSuccessful) callback.onSuccess(response.body())
+                else callback.onNoSuccess(response.code(), response.message())
+            }
+
+            override fun onFailure(call: Call<List<Report>?>, t: Throwable) {
+                callback.onFailure(t)
+            }
+        })
+    }
     fun updateReport(
         product: Report,
         productPhotoBytes: ByteArray,
