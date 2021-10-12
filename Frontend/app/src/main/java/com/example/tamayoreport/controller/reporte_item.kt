@@ -35,7 +35,7 @@ class reporte_item : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_reporte_item, container, false)
+        return inflater.inflate(R.layout.fragment_item_report, container, false)
     }
 
     companion object {

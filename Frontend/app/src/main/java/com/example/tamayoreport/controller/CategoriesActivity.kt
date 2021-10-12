@@ -20,6 +20,9 @@ class CategoriesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_categories)
+        val b = intent.extras
+        val userid = b?.getString("userId").toString()
+
         luminariasLayout=findViewById<RelativeLayout>(R.id.luminariasLayout)
         basuraLayout=findViewById<RelativeLayout>(R.id.basuraLayout)
         hecesPerroLayout=findViewById<RelativeLayout>(R.id.hecesPerroLayout)
@@ -30,21 +33,22 @@ class CategoriesActivity : AppCompatActivity() {
         malUsoLayout=findViewById<RelativeLayout>(R.id.malUsoLayout)
         otrosLayout=findViewById<RelativeLayout>(R.id.otrosLayout)
 
-        luminariasLayout.setOnClickListener(layoutClickListener("Luminarias"))
-        basuraLayout.setOnClickListener(layoutClickListener("Basura"))
-        hecesPerroLayout.setOnClickListener(layoutClickListener("Heces de Perro"))
-        ramasLayout.setOnClickListener(layoutClickListener("Ramas Obstruyendo el Paso"))
-        perroSinCorreaLayout.setOnClickListener(layoutClickListener("Perro sin correa"))
-        hierbaCrecidaLayout.setOnClickListener(layoutClickListener("Hierba Crecida"))
-        desperfInstLayout.setOnClickListener(layoutClickListener("Desperfecto en Instalaciones"))
-        malUsoLayout.setOnClickListener(layoutClickListener("Mal uso de instalaciones o faltas al reglamento"))
-        otrosLayout.setOnClickListener(layoutClickListener("Otros"))
+        luminariasLayout.setOnClickListener(layoutClickListener("Luminarias", userid))
+        basuraLayout.setOnClickListener(layoutClickListener("Basura",userid))
+        hecesPerroLayout.setOnClickListener(layoutClickListener("Heces de Perro",userid))
+        ramasLayout.setOnClickListener(layoutClickListener("Ramas Obstruyendo el Paso",userid))
+        perroSinCorreaLayout.setOnClickListener(layoutClickListener("Perro sin correa",userid))
+        hierbaCrecidaLayout.setOnClickListener(layoutClickListener("Hierba Crecida",userid))
+        desperfInstLayout.setOnClickListener(layoutClickListener("Desperfecto en Instalaciones",userid))
+        malUsoLayout.setOnClickListener(layoutClickListener("Mal uso de instalaciones o faltas al reglamento",userid))
+        otrosLayout.setOnClickListener(layoutClickListener("Otros",userid))
     }
-    private fun layoutClickListener(s:String): View.OnClickListener?{
+    private fun layoutClickListener(s:String, userId: String): View.OnClickListener?{
         return View.OnClickListener{
             //Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
             val category = Bundle()
             category.putString("key", s)
+            category.putString("userId",userId)
             val switchActivityIntent = Intent(applicationContext, Reporte::class.java)
             switchActivityIntent.putExtras(category)
             startActivity(switchActivityIntent);

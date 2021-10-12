@@ -11,13 +11,19 @@ class HomeScreenLoggedActivity : AppCompatActivity() {
     lateinit var newReport: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_home_screen_logged)
+        val b = intent.extras
+        val userid = b?.getString("userId").toString()
         newReport=findViewById<Button>(R.id.newReport)
-        newReport.setOnClickListener(newReportClickListener())
+        newReport.setOnClickListener(newReportClickListener(userid))
     }
-    private fun newReportClickListener(): View.OnClickListener?{
+    private fun newReportClickListener(userId : String): View.OnClickListener?{
         return View.OnClickListener{
+            val userid = Bundle()
+            userid.putString("userId", userId);
             val switchActivityIntent = Intent(applicationContext, CategoriesActivity::class.java);
+            switchActivityIntent.putExtras(userid);
             startActivity(switchActivityIntent);
         }
     }

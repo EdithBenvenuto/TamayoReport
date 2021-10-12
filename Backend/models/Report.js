@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
 const ReportsSchema = new mongoose.Schema({
-    idUsuario : {type: String, required: true},
-    categoria : {type: String, required: true, default: 'other'},
-    foto : {type:String, required:true},
-    fechaReporte:{type: Date, required:false},
-    ubicacion : {type:String, required:true},
-    descripcion : {type:String, required:true},
-    estado : {type:String, required:false}
+    idUsuario : {type: String},
+    categoria : {type: String, default: 'other'},
+    foto : {type:String},
+    fechaReporte:{type: Date},
+    ubicacion : {type:String},
+    descripcion : {type:String},
+    estado : {type:String}
 });
 
 // 'reports' is the name of the collection

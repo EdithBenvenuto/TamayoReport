@@ -2,22 +2,27 @@ var appRoot = require('app-root-path');
 const { reportsPhotoFolder } = require('../config');
 const fs = require('fs');
 const path = require('path');
+const mongoose = require('mongoose');
 const ReportModel = require('../models/Report');
 
 // Now this service is providing whatever is needed to interact with the database but at the same time
 // validating the BLL requirements.
 
-const createReport = async (foto, fechaReporte, categoria,ubicacion,descripcion,estado) =>{
+const createReport = async (foto, fechaReporte, categoria,ubicacion,descripcion,idUser) =>{
     const report =new ReportModel({
+        idUsuario : idUser,
         fechaReporte:fechaReporte,
         categoria: categoria,
         ubicacion: ubicacion,
         descripcion : descripcion,
         estado : "Recibido"
     });
-
+    console.log("idUser : ",report.idUsuario);
+    console.log("categoria: ", report.categoria);
+    console.log("descripcion: ", report.descripcion);
+    console.log("nuevo Reporte = ", report);
     if(foto) report.foto = foto.filename;
-
+    
     const newReport = await report.save();
 
     return newReport;
@@ -26,6 +31,10 @@ const createReport = async (foto, fechaReporte, categoria,ubicacion,descripcion,
 const getReport = async (id) =>{
     const report = await ReportModel.findById(id);
     return report;
+}
+const getUserReports = async(id) =>{
+    const reports = await ReportModel.find({idUsuario : id});
+    return reports;
 }
 
 const getAllReports = async () =>{
@@ -84,5 +93,6 @@ module.exports = {
     getReport,
     getAllReports,
     updateReport,
-    deleteReport
+    deleteReport,
+    getUserReports
 };

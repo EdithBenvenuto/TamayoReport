@@ -4,7 +4,8 @@ import com.google.gson.annotations.SerializedName
 import java.util.*
 
 class Report (
-    @SerializedName("_id") var id: String,
+    @SerializedName("_id")
+    var id: String,
     var category: String,
     var photo: String?,
     var date: String,

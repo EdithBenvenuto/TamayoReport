@@ -7,3 +7,4 @@ npm install dotenv
 npm install jsonwebtoken
 npm install -S app-root-path
 npm install --save multer
+npm install body-parser

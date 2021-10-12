@@ -1,4 +1,5 @@
 const UserService = require('../../services/user');
+const mongoose = require('mongoose');
 const {generateToken} = require('../middlewares/authentication')
 
 // Now the controller is using the services associated to the report resource.
@@ -6,7 +7,7 @@ const {generateToken} = require('../middlewares/authentication')
 
 module.exports = {
     createUser: async(req,res,next) =>{
-        const online = false;
+        const online = true;
         const admin ={adminType: 'usuario', admin: false};
         let {name,email,password} = req.body; // JSON.parse(req.body.user);
         try{
@@ -25,7 +26,7 @@ module.exports = {
             const loginUser = await UserService.login(email,password);
             if(loginUser){
                 const accessToken = generateToken(loginUser);
-                res.status(200).json({ token: accessToken, id: loginUser._id});
+                res.status(200).json({ token: accessToken, userId: loginUser._id});
             }else{
                 res.status(401).json({ "message": "Wrong Credentials" });
                 console.log(`Invalid credentials ${email}:${password}`);

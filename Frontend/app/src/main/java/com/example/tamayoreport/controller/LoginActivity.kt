@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
             val email = findViewById<EditText>(R.id.txtCorreo).text.toString()
             val password = findViewById<EditText>(R.id.txtContra).text.toString()
             val admin = Admin("anytype", false)
-            val user = User("anyname", email, password, admin)
+            val user = User("","anyname", email, password, admin, true)
 
             Model(Utils.getToken(this)).login(user, object : ILogin {
                 override fun onSuccess(token: JwtToken?) {
@@ -45,7 +45,8 @@ class LoginActivity : AppCompatActivity() {
                         // This updates the HttpClient that at this moment might not have a valid token!
                         RemoteRepository.updateRemoteReferences(token.token, this@LoginActivity);
                         // TODO: SEND THE FIREBASE TOKEN (fcmToken, userId)
-                        advanceToMainActivity()
+
+                        advanceToMainActivity(token.userId)
                     } else {
                         // do not advance, an error occurred
                         Toast.makeText(
@@ -75,10 +76,13 @@ class LoginActivity : AppCompatActivity() {
             })
         }
     }
-    private fun advanceToMainActivity() {
+    private fun advanceToMainActivity(userId: String) {
+        val userid = Bundle();
+        userid.putString("userId",userId)
         val mainActivityIntent =
             Intent(applicationContext, HomeScreenLoggedActivity::class.java)
         mainActivityIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        mainActivityIntent.putExtras(userid)
         startActivity(mainActivityIntent)
     }
 

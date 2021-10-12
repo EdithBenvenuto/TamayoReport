@@ -16,6 +16,9 @@ router.post("/", uploadMiddleware.single('photo'), ReportController.createReport
 // Read one
 router.get('/:id', ReportController.getReport);
 
+//Read User all
+router.get('/:id', ReportController.getUserReports);
+
 // Read all
 router.get('/', ReportController.getAllReports);
 

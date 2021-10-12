@@ -8,7 +8,7 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface UsersApi {
-    @POST("users/login")
+    @PUT("users/login")
     fun login(@Body user: User): Call<JwtToken>
 
     @POST("users/")
@@ -24,4 +24,5 @@ interface UsersApi {
 
     @DELETE("users/{idUsuario}")
     fun deleteProduct(@Path("idUsuario") userId: String): Call<User>
+
 }
