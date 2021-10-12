@@ -60,7 +60,9 @@ class Reporte : AppCompatActivity() {
         setContentView(R.layout.activity_reporte)
         reportCategory=findViewById(R.id.reportCategory)
         val b = intent.extras
+
         category = b?.getString("key").toString()
+        val userId = b?.getString("userId").toString()
         reportCategory.text = "Reporte "+category
         //Toast.makeText(this, value, Toast.LENGTH_SHORT).show()
 
@@ -76,12 +78,11 @@ class Reporte : AppCompatActivity() {
         btnGetCurrentLocation.setOnClickListener(btnCurrentLocationListener())
         btnUbicacion.setOnClickListener(btnUbicacion())
         btnTakePhoto.setOnClickListener(btnTakePhotoListener())
-        btnSend.setOnClickListener(btnSend())
+        btnSend.setOnClickListener(btnSend(userId))
 
         txtCoordinates = findViewById(R.id.txtLocation)
         byteArray = ByteArray(0)
         locationTxt = ""
-        category = ""
     }
 
     private fun handlePermission(permission: String, requestCode: Int): Boolean {
@@ -167,19 +168,19 @@ class Reporte : AppCompatActivity() {
             builder.show()
         }
     }
-    private fun btnSend(): View.OnClickListener {
+    private fun btnSend(userId:String): View.OnClickListener {
         return View.OnClickListener {
             //Aquí se ponen los datos que se mandan a la base de datos, también se manda a la siguiente pantalla
             //Toast.makeText(this@Reporte, "Datos enviados", Toast.LENGTH_SHORT).show()
-            val description = findViewById<EditText>(R.id.txtDescripcion).toString();
+            val description = findViewById<EditText>(R.id.txtDescripcion).text.toString();
             var location : String = ""
             if(txtCoordinates.toString() == "Location is: unknown" ){
-                location = txtCoordinates.toString()
+                location = txtCoordinates.text.toString()
             }else{
-                location = txtCoordinates.toString()
+                location = locationTxt
             }
             val report = Report(
-                "",
+                userId,
                 category,
                 null,
                 "",

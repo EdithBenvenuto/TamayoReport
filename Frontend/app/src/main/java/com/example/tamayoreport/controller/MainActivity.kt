@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Button
 import com.example.tamayoreport.R
 
+
 class MainActivity : AppCompatActivity() {
     lateinit var iniciarSesion:Button
     lateinit var registro:Button

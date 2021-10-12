@@ -92,24 +92,29 @@ class Model (private val token:String){
             }
         })
     }
-    fun updateReport(
-        product: Report,
-        productPhotoBytes: ByteArray,
-        callback: IUpdateReport
-    ) {
-        val productAsJson = Gson().toJson(product)
-        val productPart = MultipartBody.Part.createFormData("product", productAsJson)
+    fun getUserReports(userId: String, callback: IGetReports) {
+        val retrofit = RemoteRepository.getRetrofitInstance(token)
+        val callGetUser = retrofit.create(ReportsApi::class.java).getUserReports(userId)
+        callGetUser.enqueue(object : Callback<List<Report>?> {
+            override fun onResponse(
+                call: Call<List<Report>?>,
+                response: Response<List<Report>?>
+            ) {
+                if (response.isSuccessful) callback.onSuccess(response.body())
+                else callback.onNoSuccess(response.code(), response.message())
+            }
 
-        val bodyProductPhoto =
-            RequestBody.create(MediaType.parse("application/octet-stream"), productPhotoBytes)
-        val partProductPhoto =
-            MultipartBody.Part.createFormData("photo", "product.png", bodyProductPhoto)
+            override fun onFailure(call: Call<List<Report>?>, t: Throwable) {
+                callback.onFailure(t)
+            }
+        })
+    }
+    fun updateReport(product: Report, callback: IUpdateReport) {
+        val productAsJson = Gson().toJson(product)
 
         val retrofit = RemoteRepository.getRetrofitInstance(token)
-        val callUpdateProduct: Call<Report> = if (productPhotoBytes.isEmpty())
-            retrofit.create(ReportsApi::class.java).updateProduct(product.id, productPart, null)
-        else
-            retrofit.create(ReportsApi::class.java).updateProduct(product.id, productPart, partProductPhoto)
+
+        val callUpdateProduct = retrofit.create(ReportsApi::class.java).updateProduct(product.id, product.state)
 
         callUpdateProduct.enqueue(object : Callback<Report?> {
             override fun onResponse(call: Call<Report?>, response: Response<Report?>) {
@@ -128,6 +133,7 @@ class Model (private val token:String){
             }
         })
     }
+
     fun deleteProduct(productId: String, callback: IDeleteProduct) {
         val retrofit = RemoteRepository.getRetrofitInstance(token)
 
@@ -194,7 +200,6 @@ class Model (private val token:String){
 
         val retrofit = RemoteRepository.getRetrofitInstance(token)
         val callAddUser = retrofit.create(UsersApi::class.java).addUsers(product)
-
 
         callAddUser.enqueue(object : Callback<User?> {
             override fun onResponse(call: Call<User?>, response: Response<User?>) {

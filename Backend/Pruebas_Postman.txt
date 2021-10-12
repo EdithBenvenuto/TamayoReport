@@ -6,7 +6,8 @@
     "email":"Olga@report.com",
     "password":"1234"
 }
-
 {
-    
+    "name":"Fabrizzio Ramirez",
+    "email":"fabrizzio@ramirez.com",
+    "password":"12345"
 }
