@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.RelativeLayout
 import com.example.tamayoreport.R
 
@@ -17,12 +18,11 @@ class CategoriesActivity : AppCompatActivity() {
     lateinit var desperfInstLayout: RelativeLayout
     lateinit var malUsoLayout: RelativeLayout
     lateinit var otrosLayout: RelativeLayout
+    lateinit var Crea: Button
+    lateinit var Busca: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_categories)
-        val b = intent.extras
-        val userid = b?.getString("userId").toString()
-
         luminariasLayout=findViewById<RelativeLayout>(R.id.luminariasLayout)
         basuraLayout=findViewById<RelativeLayout>(R.id.basuraLayout)
         hecesPerroLayout=findViewById<RelativeLayout>(R.id.hecesPerroLayout)
@@ -33,22 +33,39 @@ class CategoriesActivity : AppCompatActivity() {
         malUsoLayout=findViewById<RelativeLayout>(R.id.malUsoLayout)
         otrosLayout=findViewById<RelativeLayout>(R.id.otrosLayout)
 
-        luminariasLayout.setOnClickListener(layoutClickListener("Luminarias", userid))
-        basuraLayout.setOnClickListener(layoutClickListener("Basura",userid))
-        hecesPerroLayout.setOnClickListener(layoutClickListener("Heces de Perro",userid))
-        ramasLayout.setOnClickListener(layoutClickListener("Ramas Obstruyendo el Paso",userid))
-        perroSinCorreaLayout.setOnClickListener(layoutClickListener("Perro sin correa",userid))
-        hierbaCrecidaLayout.setOnClickListener(layoutClickListener("Hierba Crecida",userid))
-        desperfInstLayout.setOnClickListener(layoutClickListener("Desperfecto en Instalaciones",userid))
-        malUsoLayout.setOnClickListener(layoutClickListener("Mal uso de instalaciones o faltas al reglamento",userid))
-        otrosLayout.setOnClickListener(layoutClickListener("Otros",userid))
+        luminariasLayout.setOnClickListener(layoutClickListener("Luminarias"))
+        basuraLayout.setOnClickListener(layoutClickListener("Basura"))
+        hecesPerroLayout.setOnClickListener(layoutClickListener("Heces de Perro"))
+        ramasLayout.setOnClickListener(layoutClickListener("Ramas Obstruyendo el Paso"))
+        perroSinCorreaLayout.setOnClickListener(layoutClickListener("Perro sin correa"))
+        hierbaCrecidaLayout.setOnClickListener(layoutClickListener("Hierba Crecida"))
+        desperfInstLayout.setOnClickListener(layoutClickListener("Desperfecto en Instalaciones"))
+        malUsoLayout.setOnClickListener(layoutClickListener("Mal uso de instalaciones o faltas al reglamento"))
+        otrosLayout.setOnClickListener(layoutClickListener("Otros"))
+
+        Crea = findViewById(R.id.Crea)
+        Busca = findViewById(R.id.Busca)
+
+        Crea.setOnClickListener(clicCrea())
+        Busca.setOnClickListener(clicBusca())
     }
-    private fun layoutClickListener(s:String, userId: String): View.OnClickListener?{
+    fun clicCrea(): View.OnClickListener?{
+        return View.OnClickListener{
+            val switchActivityIntent = Intent(applicationContext, CategoriesActivity::class.java)
+            startActivity(switchActivityIntent);
+        }
+    }
+    fun clicBusca(): View.OnClickListener?{
+        return View.OnClickListener{
+            val switchActivityIntent = Intent(applicationContext, lista_reportes::class.java)
+            startActivity(switchActivityIntent);
+        }
+    }
+    private fun layoutClickListener(s:String): View.OnClickListener?{
         return View.OnClickListener{
             //Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
             val category = Bundle()
             category.putString("key", s)
-            category.putString("userId",userId)
             val switchActivityIntent = Intent(applicationContext, Reporte::class.java)
             switchActivityIntent.putExtras(category)
             startActivity(switchActivityIntent);

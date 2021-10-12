@@ -7,49 +7,43 @@
     android:layout_height="match_parent"
     tools:context=".controller.lista_reportes">
 
-    <ImageView
-        android:id="@+id/menu"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="18dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/menu" />
-
-    <ImageView
-        android:id="@+id/notificaciones"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintEnd_toStartOf="@+id/buscar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/notification" />
-
-    <ImageView
-        android:id="@+id/buscar"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="408dp"
+        android:layout_height="53dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/search" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/Crea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Crea Reportes" />
+
+        <Button
+            android:id="@+id/Busca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Busca Reportes" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="Mis reportes"
         android:textAllCaps="true"
         android:textColor="@color/negro"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menu" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/Recycler"
