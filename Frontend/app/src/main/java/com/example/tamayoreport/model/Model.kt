@@ -109,24 +109,12 @@ class Model (private val token:String){
             }
         })
     }
-    fun updateReport(
-        product: Report,
-        productPhotoBytes: ByteArray,
-        callback: IUpdateReport
-    ) {
+    fun updateReport(product: Report, callback: IUpdateReport) {
         val productAsJson = Gson().toJson(product)
-        val productPart = MultipartBody.Part.createFormData("product", productAsJson)
-
-        val bodyProductPhoto =
-            RequestBody.create(MediaType.parse("application/octet-stream"), productPhotoBytes)
-        val partProductPhoto =
-            MultipartBody.Part.createFormData("photo", "product.png", bodyProductPhoto)
 
         val retrofit = RemoteRepository.getRetrofitInstance(token)
-        val callUpdateProduct: Call<Report> = if (productPhotoBytes.isEmpty())
-            retrofit.create(ReportsApi::class.java).updateProduct(product.id, productPart, null)
-        else
-            retrofit.create(ReportsApi::class.java).updateProduct(product.id, productPart, partProductPhoto)
+
+        val callUpdateProduct = retrofit.create(ReportsApi::class.java).updateProduct(product.id, product.state)
 
         callUpdateProduct.enqueue(object : Callback<Report?> {
             override fun onResponse(call: Call<Report?>, response: Response<Report?>) {
@@ -145,6 +133,7 @@ class Model (private val token:String){
             }
         })
     }
+
     fun deleteProduct(productId: String, callback: IDeleteProduct) {
         val retrofit = RemoteRepository.getRetrofitInstance(token)
 

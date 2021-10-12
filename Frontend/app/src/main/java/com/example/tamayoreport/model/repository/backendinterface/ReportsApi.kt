@@ -23,13 +23,12 @@ interface ReportsApi {
     @PUT("reports/{id}")
     fun updateProduct(
         @Path("id") productId: String,
-        @Part product: MultipartBody.Part,
-        @Part productPhoto: MultipartBody.Part?
+        @Part ("state") state: String
     ): Call<Report>
 
     @GET("reports/{UserId}")
     fun getUserReports(@Path("UserId") userId: String): Call<List<Report>>
-    
+
     @DELETE("reports/{id}")
     fun deleteProduct(@Path("reportId") productId: String): Call<Report>
 }
