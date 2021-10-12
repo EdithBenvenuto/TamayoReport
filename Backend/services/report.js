@@ -42,30 +42,11 @@ const getAllReports = async () =>{
     return reports;
 }
 
-const updateReport = async (id,categoria,fechaReporte,foto,ubicacion,descripcion, keepPhoto) =>{
+const updateReport = async (id,fechaReporte,estado) =>{
     const report = await ReportModel.findById(id);
     report.fechaReporte= fechaReporte;
-    report.categoria = categoria;
-    report.ubicacion=ubicacion;
-    report.descripcion=descripcion;
-
-    const previousPicture = report.foto
-    let removePhoto = false;
-
-    if (foto) {
-        // User uploaded an image, this will overwrite the previous image
-        report.foto = foto.filename;
-    } else {
-        // User did not upload an image, here it might mean to drop the image, keepPhoto will tell
-        if (!keepPhoto) {
-            report.foto = null;
-            removePhoto = true;
-        }
-    }
-
+    report.estado = estado;
     await report.updateOne();
-    if (removePhoto) deletePhoto(previousPicture)
-
     return report;
 }
 
