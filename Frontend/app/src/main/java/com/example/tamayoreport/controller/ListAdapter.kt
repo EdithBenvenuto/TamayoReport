@@ -52,9 +52,9 @@ class ListAdapter(
             }
             fecha.text = report.date
             when (report.state) {
-                "reportado" -> fondo.setBackgroundColor(Color.parseColor("#F75437"))
-                "proceso" -> fondo.setBackgroundColor(Color.parseColor("#F7DD37"))
-                "terminado" -> fondo.setBackgroundColor(Color.parseColor("#37F780"))
+                "Recibido" -> fondo.setBackgroundColor(Color.parseColor("#F75437"))
+                "En proceso" -> fondo.setBackgroundColor(Color.parseColor("#F7DD37"))
+                "Resuelto" -> fondo.setBackgroundColor(Color.parseColor("#37F780"))
             }
             when (report.category) {
                 "Luminarias" -> imagen.setImageResource(R.drawable.luminarias)
