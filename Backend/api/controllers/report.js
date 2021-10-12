@@ -8,12 +8,13 @@ module.exports = {
     createReport: async(req, res, next) =>{
         console.log("req body",req.body);
         //let {id,category,ubication,description} = req.body.product;
-        let id = req.body.product._id;
-        let category = req.body.product.category;
-        let ubication = req.body.product.ubication;
-        let description = req.body.product.description;
+        let reqReport = JSON.parse(req.body.product);
+        let id = reqReport._id;
+        let category = reqReport.category;
+        let ubication = reqReport.ubication;
+        let description = reqReport.description;
         let fechaReporte = Date.now();
-        console.log("ATRIBUTOS = ", req.body.product.category);
+        console.log("ATRIBUTOS = ", reqReport.category);
         try{
             const report = await ReportService.createReport(req.foto,fechaReporte,category,ubication,description,id);
             res.status(201).json(report); //201 = created

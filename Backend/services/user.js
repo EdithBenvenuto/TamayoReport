@@ -10,8 +10,8 @@ const login = async (email, password) => {
         if (success === true)
             user.updateOne({$set:{online: true}});
             return user;
-        }else 
-
+        } 
+        
     return null;
 };
 const logout = async(id) =>{

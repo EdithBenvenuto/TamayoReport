@@ -92,7 +92,7 @@ class Model (private val token:String){
             }
         })
     }
-    fun getUsersReports(userId: String, callback: IGetReports) {
+    fun getUserReports(userId: String, callback: IGetReports) {
         val retrofit = RemoteRepository.getRetrofitInstance(token)
         val callGetUser = retrofit.create(ReportsApi::class.java).getUserReports(userId)
         callGetUser.enqueue(object : Callback<List<Report>?> {

@@ -60,6 +60,7 @@ class RegistroActivity : AppCompatActivity() {
                     admin,
                     true
                 )
+
                 Model(Utils.getToken(this)).addUsers(user, object: IAddUser{
                     override fun onSuccess(product: User?){
                         Toast.makeText(this@RegistroActivity, "Datos enviados", Toast.LENGTH_SHORT).show()
