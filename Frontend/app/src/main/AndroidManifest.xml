@@ -15,10 +15,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TamayoReport">
         <activity
+            android:name=".controller.VerReporte_Admin"
+            android:exported="true" />
+        <activity
+            android:name=".controller.lista_reportes"
+            android:exported="true" />
+        <activity
+            android:name=".controller.VerReporte"
+            android:exported="true" />
+        <activity
             android:name=".controller.PostReporteActivity"
             android:exported="true" />
         <activity
-            android:name=".controller.CategoriesActivity"
+            android:name=".controller.MainActivity"
             android:exported="true" />
         <activity
             android:name=".controller.HomeScreenLoggedActivity"
@@ -33,7 +42,7 @@
             android:name=".controller.LoginActivity"
             android:exported="true" />
         <activity
-            android:name=".controller.MainActivity"
+            android:name=".controller.CategoriesActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
