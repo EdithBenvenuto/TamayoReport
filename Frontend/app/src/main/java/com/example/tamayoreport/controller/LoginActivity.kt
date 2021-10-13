@@ -1,6 +1,7 @@
 package com.example.tamayoreport.controller
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -20,6 +21,7 @@ import com.example.tamayoreport.model.repository.responseinterface.ILogin
 class LoginActivity : AppCompatActivity() {
     lateinit var iniciarSesion: Button
     lateinit var registro: Button
+    lateinit var sharedPreferences : SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -45,8 +47,11 @@ class LoginActivity : AppCompatActivity() {
                         // This updates the HttpClient that at this moment might not have a valid token!
                         RemoteRepository.updateRemoteReferences(token.token, this@LoginActivity);
                         // TODO: SEND THE FIREBASE TOKEN (fcmToken, userId)
-
-                        advanceToMainActivity(token.userId)
+                        //shared preferences user ID :
+                        val editor = sharedPreferences.edit()
+                        editor.putString("shareIdUser", token.userId)
+                        editor.apply()
+                        advanceToMainActivity()
                     } else {
                         // do not advance, an error occurred
                         Toast.makeText(
@@ -76,13 +81,10 @@ class LoginActivity : AppCompatActivity() {
             })
         }
     }
-    private fun advanceToMainActivity(userId: String) {
-        val userid = Bundle();
-        userid.putString("userId",userId)
-        val mainActivityIntent =
-            Intent(applicationContext, HomeScreenLoggedActivity::class.java)
+    private fun advanceToMainActivity() {
+
+        val mainActivityIntent = Intent(applicationContext, HomeScreenLoggedActivity::class.java)
         mainActivityIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        mainActivityIntent.putExtras(userid)
         startActivity(mainActivityIntent)
     }
 

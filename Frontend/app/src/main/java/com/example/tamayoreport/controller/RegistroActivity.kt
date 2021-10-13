@@ -64,7 +64,7 @@ class RegistroActivity : AppCompatActivity() {
                 Model(Utils.getToken(this)).addUsers(user, object: IAddUser{
                     override fun onSuccess(product: User?){
                         Toast.makeText(this@RegistroActivity, "Datos enviados", Toast.LENGTH_SHORT).show()
-                        val switchActivityIntent = Intent(applicationContext, HomeScreenLoggedActivity::class.java)
+                        val switchActivityIntent = Intent(applicationContext, LoginActivity::class.java)
                         startActivity(switchActivityIntent);
                     }
                     override fun onNoSuccess(code: Int, message: String) {

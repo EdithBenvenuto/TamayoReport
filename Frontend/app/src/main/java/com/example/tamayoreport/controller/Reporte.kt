@@ -6,6 +6,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -37,6 +38,7 @@ import java.util.*
 
 class Reporte : AppCompatActivity() {
     lateinit var reportCategory:TextView
+    lateinit var sharedPreferences : SharedPreferences
     companion object {
         private const val CAMERA_PERMISSION_CODE = 100
         private const val FINE_LOCATION_PERMISSION_CODE = 101
@@ -62,7 +64,7 @@ class Reporte : AppCompatActivity() {
         val b = intent.extras
 
         category = b?.getString("key").toString()
-        val userId = b?.getString("userId").toString()
+        val userId = sharedPreferences.getString("shareIdUser", "defaultID").toString()
         reportCategory.text = "Reporte "+category
         //Toast.makeText(this, value, Toast.LENGTH_SHORT).show()
 
