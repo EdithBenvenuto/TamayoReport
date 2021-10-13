@@ -23,7 +23,7 @@ router.get('/:id', ReportController.getUserReports);
 router.get('/', ReportController.getAllReports);
 
 // Update
-router.put('/', uploadMiddleware.single('photo'), ReportController.updateReport);
+router.put('/', ReportController.updateReport);
 
 // Delete
 router.delete('/:id', ReportController.deleteReport);

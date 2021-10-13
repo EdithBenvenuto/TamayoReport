@@ -18,7 +18,7 @@ module.exports = {
             console.log(err.message);
         }
     },
-    //VERIFICAR JSON.PARSE(.USER) Y RES.JSON
+    
     login: async(req,res,next) =>{
         let {email,password} = req.body;
         
@@ -26,7 +26,7 @@ module.exports = {
             const loginUser = await UserService.login(email,password);
             if(loginUser){
                 const accessToken = generateToken(loginUser);
-                res.status(200).json({ token: accessToken, userId: loginUser._id, userType : loginUser.admin.admin});
+                res.status(200).json({ token: accessToken, userId: loginUser._id, admin : loginUser.admin.admin});
             }else{
                 res.status(401).json({ "message": "Wrong Credentials" });
                 console.log(`Invalid credentials ${email}:${password}`);

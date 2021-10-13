@@ -51,6 +51,10 @@ class LoginActivity : AppCompatActivity() {
                         val editor = sharedPreferences.edit()
                         editor.putString("shareIdUser", token.userId)
                         editor.putBoolean("admin",token.admin)
+                        if(token.admin){
+                            Toast.makeText(this@LoginActivity , "Accediste como admin", Toast.LENGTH_SHORT).show()
+                        }
+
                         editor.apply()
                         advanceToMainActivity()
                     } else {

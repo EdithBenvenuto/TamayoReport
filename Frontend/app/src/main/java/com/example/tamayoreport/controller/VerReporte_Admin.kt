@@ -1,64 +1,89 @@
 package com.example.tamayoreport.controller
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.tamayoreport.R
+import com.example.tamayoreport.Utils
+import com.example.tamayoreport.Utils.Companion.BASE_URL
+import com.example.tamayoreport.model.Model
 import com.example.tamayoreport.model.entities.Report
+import com.example.tamayoreport.model.repository.RemoteRepository
+import com.example.tamayoreport.model.repository.responseinterface.IAddReport
+import com.example.tamayoreport.model.repository.responseinterface.IUpdateReport
 import com.squareup.picasso.Picasso
 
 class VerReporte_Admin : AppCompatActivity() {
-    var reportesHard: List<Report> = listOf(
-        Report("1","Heces de Perro","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png","11/10","41N 32.3E","perrito miando estoy tratando de sobrebordar todo el pinche texto","Recibido"),
-        Report("2","Basura","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/13.png","05/23","41N 32.3E","la mama","Resuelto"),
-        Report("3","Perro sin correa","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/52.png","03/03","41N 32.3E","de la mama","En proceso"),
-        Report("4","Ramas Obstruyendo el Paso","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/282.png","02/14","41N 32.3E","mientras siga viendo","Resuelto"),
-        Report("5","Perro sin correa","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/342.png","31/03","41N 32.3E","tu cara en la cara","En proceso"),
-        Report("6","Luminarias","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/582.png","06/07","41N 32.3E","de la luna","Resuelto"),
-        Report("7","Mal uso de instalaciones o faltas al reglamento","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png","11/10","41N 32.3E","perrito miando","Recibido"),
-        Report("8","Otros","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/13.png","05/23","41N 32.3E","la mama","Resuelto"),
-        Report("9","Desperfecto en Instalaciones","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/52.png","03/03","41N 32.3E","de la mama","En proceso"),
-        Report("10","Hierba Crecida","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/282.png","02/14","41N 32.3E","mientras siga viendo","Resuelto"),
-        Report("11","Ramas Obstruyendo el Paso","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/342.png","31/03","41N 32.3E","tu cara en la cara","En proceso"),
-        Report("12","Luminarias","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/582.png","06/07","41N 32.3E","de la luna","Resuelto"),
-    )   //Simulacion conexion con backend
+
     lateinit var titulo: TextView
     lateinit var descripcion: TextView
     lateinit var location: TextView
     lateinit var imagen: ImageView
     lateinit var id: String
-    lateinit var report: Report
+    lateinit var foto : String
     lateinit var selecion: RadioGroup
     lateinit var boton: Button
+    lateinit var nuevoEstado :String
+    lateinit var updateReport :Report
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ver_reporte_admin)
         val b = intent.extras
         id = b?.getString("id").toString()
-        report = reportesHard[id.toInt()-1] //Simular tomar dato de reporte especifico
+        foto = b?.getString("foto").toString()
+
         titulo = findViewById(R.id.titulo)
         descripcion = findViewById(R.id.descripcion)
         location = findViewById(R.id.location)
         imagen = findViewById(R.id.imageView)
         selecion = findViewById(R.id.grupo)
         boton = findViewById(R.id.botonEstado)
+
         var radioButton: RadioButton = findViewById(R.id.RB1)
-        when(report.estado){
+        when(b?.getString("estado").toString()){
             "Recibido" -> radioButton = findViewById(R.id.RB1)
             "En proceso" -> radioButton = findViewById(R.id.RB2)
             "Resuelto" -> radioButton = findViewById(R.id.RB3)
         }
+
         radioButton.isChecked = true
-        titulo.text = "Reporte de "+report.categoria
-        descripcion.text = report.descripcion
-        location.text = "Location: " + report.ubicacion
-        Picasso.get().load(report.foto).into(imagen)
+        titulo.text = "Reporte de "+ b?.getString("categoria").toString()
+        descripcion.text = b?.getString("descripcion").toString()
+        location.text = b?.getString("ubicacion").toString()
+
+        Toast.makeText(this@VerReporte_Admin,foto ,Toast.LENGTH_SHORT).show()
+        val picasso = RemoteRepository.getPicassoInstance(this, Utils.getToken(this))
+        val urlForImage = "${BASE_URL}reportPhotos/$foto"
+        picasso.load(urlForImage).into(imagen);
+
+
+        //Picasso.get().load(foto).into(imagen)
         boton.setOnClickListener(){
             when (selecion.checkedRadioButtonId) {
-                R.id.RB1 -> Toast.makeText(applicationContext, "Cambia estado a 'Recibido'", Toast.LENGTH_SHORT).show()
-                R.id.RB2 -> Toast.makeText(applicationContext, "Cambia estado a 'En proceso'", Toast.LENGTH_SHORT).show()
-                R.id.RB3 -> Toast.makeText(applicationContext, "Cambia estado a 'Resuelto'", Toast.LENGTH_SHORT).show()
+                R.id.RB1 ->  nuevoEstado = "Recibido" //Toast.makeText(applicationContext, "Cambia estado a 'Recibido'", Toast.LENGTH_SHORT).show()
+                R.id.RB2 -> nuevoEstado = "En proceso" //Toast.makeText(applicationContext, "Cambia estado a 'En proceso'", Toast.LENGTH_SHORT).show()
+                R.id.RB3 -> nuevoEstado = "Resuelto"//Toast.makeText(applicationContext, "Cambia estado a 'Resuelto'", Toast.LENGTH_SHORT).show()
             }
+            updateReport = Report(id," "," "," ", " ", " ", " ", nuevoEstado)
+            Model(Utils.getToken(this)).updateReport(updateReport, object : IUpdateReport {
+                override fun onSuccess(product: Report?){
+                    Toast.makeText(this@VerReporte_Admin, "Datos enviados", Toast.LENGTH_SHORT).show()
+                    val switchActivityIntent = Intent(applicationContext, lista_reportes::class.java)
+                    startActivity(switchActivityIntent);
+                }
+                override fun onNoSuccess(code: Int, message: String) {
+                    Toast.makeText(this@VerReporte_Admin, "Problem detected $code $message", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onFailure(t: Throwable) {
+                    Toast.makeText(this@VerReporte_Admin, "Network or server error occurred", Toast.LENGTH_SHORT).show()
+                }
+            }
+            )
         }
     }
 }

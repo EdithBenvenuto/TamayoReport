@@ -18,7 +18,7 @@ import retrofit2.Response
 class Model (private val token:String){
     fun getReports(callback: IGetReports) {
         val retrofit = RemoteRepository.getRetrofitInstance(token)
-        val callGetUser = retrofit.create(ReportsApi::class.java).getProducts()
+        val callGetUser = retrofit.create(ReportsApi::class.java).getReports()
         callGetUser.enqueue(object : Callback<List<Report>?> {
             override fun onResponse(
                 call: Call<List<Report>?>,
@@ -109,12 +109,13 @@ class Model (private val token:String){
             }
         })
     }
-    fun updateReport(product: Report, callback: IUpdateReport) {
-        val productAsJson = Gson().toJson(product)
+    fun updateReport(report: Report, callback: IUpdateReport) {
+        val productAsJson = Gson().toJson(report)
+        val productPart = MultipartBody.Part.createFormData("product", productAsJson)
 
         val retrofit = RemoteRepository.getRetrofitInstance(token)
 
-        val callUpdateProduct = retrofit.create(ReportsApi::class.java).updateProduct(product.id, product.estado)
+        val callUpdateProduct = retrofit.create(ReportsApi::class.java).updateProduct(report.id,productPart)
 
         callUpdateProduct.enqueue(object : Callback<Report?> {
             override fun onResponse(call: Call<Report?>, response: Response<Report?>) {
