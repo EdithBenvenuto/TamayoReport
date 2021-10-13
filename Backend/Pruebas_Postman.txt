@@ -7,7 +7,7 @@
     "password":"1234"
 }
 {
-    "name":"calvizzio",
-    "email":"nalgas@nalgas.com",
-    "password":"1234"
+    "name":"Fabrizzio Ramirez",
+    "email":"fabrizzio@ramirez.com",
+    "password":"12345"
 }

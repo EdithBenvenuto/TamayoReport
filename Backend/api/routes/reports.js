@@ -8,7 +8,7 @@ const { uploadMiddleware } = require('../middlewares/upload');
 // Now the routes are simply doing that: re-rerouting the request (including all of their context) to the corresponding controller.
 const ReportController = require('../controllers/report');
 
-router.use(requireLogin);
+//router.use(requireLogin);
 
 // Create
 router.post("/", uploadMiddleware.single('photo'), ReportController.createReport);
