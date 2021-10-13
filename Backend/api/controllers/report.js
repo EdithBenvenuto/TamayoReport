@@ -10,9 +10,9 @@ module.exports = {
         //let {id,category,ubication,description} = req.body.product;
         let reqReport = JSON.parse(req.body.product);
         let id = reqReport._id;
-        let category = reqReport.category;
-        let ubication = reqReport.ubication;
-        let description = reqReport.description;
+        let category = reqReport.categoria;
+        let ubication = reqReport.ubicacion;
+        let description = reqReport.descripcion;
         let fechaReporte = Date.now();
         console.log("ATRIBUTOS = ", reqReport.category);
         try{
