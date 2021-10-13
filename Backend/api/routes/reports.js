@@ -23,12 +23,12 @@ router.get('/:id', ReportController.getUserReports);
 router.get('/', ReportController.getAllReports);
 
 // Update
-router.put('/', ReportController.updateReport);
+router.put('/:id',uploadMiddleware.single('photo') ,ReportController.updateReport);
 
 // Delete
 router.delete('/:id', ReportController.deleteReport);
 
 // Get image
-router.get('/images/:photoPath', ReportController.getReportImage);
+router.get('/reportPhotos/:photoPath', ReportController.getReportImage);
 
 module.exports = router;

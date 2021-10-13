@@ -55,9 +55,11 @@ class VerReporte_Admin : AppCompatActivity() {
         descripcion.text = b?.getString("descripcion").toString()
         location.text = b?.getString("ubicacion").toString()
 
-        Toast.makeText(this@VerReporte_Admin,foto ,Toast.LENGTH_SHORT).show()
+
         val picasso = RemoteRepository.getPicassoInstance(this, Utils.getToken(this))
-        val urlForImage = "${BASE_URL}reportPhotos/$foto"
+        val urlForImage = "${BASE_URL}reports/reportPhotos/$foto"
+        //val urlForImage = "http://10.0.2.2:3000/reportPhotos/$foto"
+        Toast.makeText(this@VerReporte_Admin,urlForImage ,Toast.LENGTH_LONG).show()
         picasso.load(urlForImage).into(imagen);
 
 

@@ -19,7 +19,8 @@ const createReport = async (foto, fechaReporte, categoria,ubicacion,descripcion,
         estado : "Recibido"
     });
     
-    if(foto) report.foto = foto.path;
+    //if(foto) report.foto = foto.path;
+    if(foto) report.foto = foto.filename;
     const newReport = await report.save();
     console.log("nuevo Reporte = ", report);
     return newReport;
@@ -43,7 +44,7 @@ const updateReport = async (id,fechaReporte,estado) =>{
     const report = await ReportModel.findById(id);
     report.fechaReporte= fechaReporte;
     report.estado = estado;
-    await report.updateOne();
+    await report.save();
     return report;
 }
 
