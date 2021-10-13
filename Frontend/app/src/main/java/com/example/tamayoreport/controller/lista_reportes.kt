@@ -3,13 +3,23 @@ package com.example.tamayoreport.controller
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tamayoreport.ListAdapter
 import com.example.tamayoreport.R
+import com.example.tamayoreport.Utils
 import com.example.tamayoreport.model.entities.Report
+import com.example.tamayoreport.model.Model
+import com.example.tamayoreport.model.repository.responseinterface.IAddReport
+import com.example.tamayoreport.model.repository.responseinterface.IGetReports
+import com.google.android.datatransport.cct.internal.LogResponse.fromJson
+import com.google.gson.Gson
+import org.json.JSONArray
 
 class lista_reportes : AppCompatActivity() {
     var reportesHard: List<Report> = listOf(
@@ -25,6 +35,7 @@ class lista_reportes : AppCompatActivity() {
         Report("10","Hierba Crecida","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/282.png","02/14","41N 32.3E","mientras siga viendo","Resuelto"),
         Report("11","Ramas Obstruyendo el Paso","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/342.png","31/03","41N 32.3E","tu cara en la cara","En proceso"),
         Report("12","Luminarias","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/582.png","06/07","41N 32.3E","de la luna","Resuelto"),
+
     )   //Simulacion conexion con backend
     var tipoUsuario: String = "admin"
     lateinit var Crea: Button
@@ -36,6 +47,29 @@ class lista_reportes : AppCompatActivity() {
         Busca = findViewById(R.id.Busca)
         Crea.setOnClickListener(clicCrea())
         Busca.setOnClickListener(clicBusca())
+
+        Model(Utils.getToken(this)).getReports(object : IGetReports {
+            override fun onSuccess(products: List<Report>?){
+                if (products != null) {
+                    //reportesHard=products
+                    val product: Report = products[0]
+                    //Log.i("reportes",reports.toString())
+                    Toast.makeText(this@lista_reportes, product.categoria.toString() + " size: " + products.size.toString(), Toast.LENGTH_LONG).show()
+                }else{
+                    //Log.i("reportes",reports.toString())
+                    Toast.makeText(this@lista_reportes, products.toString(), Toast.LENGTH_LONG).show()
+                }
+            }
+            override fun onNoSuccess(code: Int, message: String) {
+                Toast.makeText(this@lista_reportes, "Problem detected $code $message", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onFailure(t: Throwable) {
+                Toast.makeText(this@lista_reportes, "Network or server error occurred", Toast.LENGTH_SHORT).show()
+            }
+        }
+        )
+
         initRecycler()
     }
     fun clicCrea(): View.OnClickListener?{

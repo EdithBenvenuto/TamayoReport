@@ -16,7 +16,7 @@ module.exports = {
         let fechaReporte = Date.now();
         console.log("ATRIBUTOS = ", reqReport.category);
         try{
-            const report = await ReportService.createReport(req.foto,fechaReporte,category,ubication,description,id);
+            const report = await ReportService.createReport(req.file,fechaReporte,category,ubication,description,id);
             res.status(201).json(report); //201 = created
             
         }catch (err){

@@ -17,14 +17,10 @@ const createReport = async (foto, fechaReporte, categoria,ubicacion,descripcion,
         descripcion : descripcion,
         estado : "Recibido"
     });
-    console.log("idUser : ",report.idUsuario);
-    console.log("categoria: ", report.categoria);
-    console.log("descripcion: ", report.descripcion);
-    console.log("nuevo Reporte = ", report);
-    if(foto) report.foto = foto.filename;
     
+    if(foto) report.foto = foto.path;
     const newReport = await report.save();
-
+    console.log("nuevo Reporte = ", report);
     return newReport;
 }
 

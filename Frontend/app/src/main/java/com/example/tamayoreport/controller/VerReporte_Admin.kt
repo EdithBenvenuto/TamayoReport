@@ -43,16 +43,16 @@ class VerReporte_Admin : AppCompatActivity() {
         selecion = findViewById(R.id.grupo)
         boton = findViewById(R.id.botonEstado)
         var radioButton: RadioButton = findViewById(R.id.RB1)
-        when(report.state){
+        when(report.estado){
             "Recibido" -> radioButton = findViewById(R.id.RB1)
             "En proceso" -> radioButton = findViewById(R.id.RB2)
             "Resuelto" -> radioButton = findViewById(R.id.RB3)
         }
         radioButton.isChecked = true
-        titulo.text = "Reporte de "+report.category
-        descripcion.text = report.description
-        location.text = "Location: " + report.ubication
-        Picasso.get().load(report.photo).into(imagen)
+        titulo.text = "Reporte de "+report.categoria
+        descripcion.text = report.descripcion
+        location.text = "Location: " + report.ubicacion
+        Picasso.get().load(report.foto).into(imagen)
         boton.setOnClickListener(){
             when (selecion.checkedRadioButtonId) {
                 R.id.RB1 -> Toast.makeText(applicationContext, "Cambia estado a 'Recibido'", Toast.LENGTH_SHORT).show()

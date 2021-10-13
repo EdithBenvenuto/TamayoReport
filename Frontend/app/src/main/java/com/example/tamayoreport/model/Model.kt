@@ -114,7 +114,7 @@ class Model (private val token:String){
 
         val retrofit = RemoteRepository.getRetrofitInstance(token)
 
-        val callUpdateProduct = retrofit.create(ReportsApi::class.java).updateProduct(product.id, product.state)
+        val callUpdateProduct = retrofit.create(ReportsApi::class.java).updateProduct(product.id, product.estado)
 
         callUpdateProduct.enqueue(object : Callback<Report?> {
             override fun onResponse(call: Call<Report?>, response: Response<Report?>) {

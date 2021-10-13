@@ -7,7 +7,6 @@ import android.widget.TextView
 import com.example.tamayoreport.R
 import com.example.tamayoreport.model.entities.Report
 import com.squareup.picasso.Picasso
-import org.w3c.dom.Text
 
 class VerReporte : AppCompatActivity() {
     var reportesHard: List<Report> = listOf(
@@ -40,9 +39,9 @@ class VerReporte : AppCompatActivity() {
         descripcion = findViewById(R.id.descripcion)
         location = findViewById(R.id.location)
         imagen = findViewById(R.id.imageView)
-        titulo.text = "Reporte de "+report.category
-        descripcion.text = report.description
-        location.text = "Location: " + report.ubication
-        Picasso.get().load(report.photo).into(imagen)
+        titulo.text = "Reporte de "+report.categoria
+        descripcion.text = report.descripcion
+        location.text = "Location: " + report.ubicacion
+        Picasso.get().load(report.foto).into(imagen)
     }
 }

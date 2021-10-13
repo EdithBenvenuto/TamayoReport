@@ -180,13 +180,13 @@ class Reporte : AppCompatActivity() {
                 location = locationTxt
             }
             val report = Report(
-                userId,
-                category,
+                id=userId,
+                categoria = category,
                 null,
                 "",
-                location,
-                description,
-                "Unresolved"
+                ubicacion = location,
+                descripcion = description,
+                " "
             )
             Model(Utils.getToken(this)).addReport(report, byteArray, object : IAddReport{
                     override fun onSuccess(product: Report?){
