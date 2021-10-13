@@ -40,7 +40,7 @@ module.exports = {
         }
     },
     getUserReports: async (req,res, next) =>{
-        const userId = req.params.id;
+        const userId = req.param.UserId;
         try {
             const reports = await ReportService.getUserReports(userId);
             if (reports) {

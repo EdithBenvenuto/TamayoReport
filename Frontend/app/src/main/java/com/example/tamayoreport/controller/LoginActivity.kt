@@ -1,6 +1,8 @@
 package com.example.tamayoreport.controller
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -20,9 +22,11 @@ import com.example.tamayoreport.model.repository.responseinterface.ILogin
 class LoginActivity : AppCompatActivity() {
     lateinit var iniciarSesion: Button
     lateinit var registro: Button
+   lateinit var  sharedPreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        sharedPreferences = this.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
         iniciarSesion=findViewById<Button>(R.id.inicioSesion)
         registro=findViewById<Button>(R.id.registrate)
         iniciarSesion.setOnClickListener(loginClickListener())
@@ -44,8 +48,11 @@ class LoginActivity : AppCompatActivity() {
                         // This updates the HttpClient that at this moment might not have a valid token!
                         RemoteRepository.updateRemoteReferences(token.token, this@LoginActivity);
                         // TODO: SEND THE FIREBASE TOKEN (fcmToken, userId)
-
-                        advanceToMainActivity(token.userId)
+                        val editor = sharedPreferences.edit()
+                        editor.putString("shareIdUser", token.userId)
+                        editor.putBoolean("admin",token.admin)
+                        editor.apply()
+                        advanceToMainActivity()
                     } else {
                         // do not advance, an error occurred
                         Toast.makeText(
@@ -75,13 +82,10 @@ class LoginActivity : AppCompatActivity() {
             })
         }
     }
-    private fun advanceToMainActivity(userId: String) {
-        val userid = Bundle();
-        userid.putString("userId",userId)
+    private fun advanceToMainActivity() {
         val mainActivityIntent =
             Intent(applicationContext, HomeScreenLoggedActivity::class.java)
         mainActivityIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        mainActivityIntent.putExtras(userid)
         startActivity(mainActivityIntent)
     }
 
