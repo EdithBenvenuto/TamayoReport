@@ -18,8 +18,8 @@ class PostReporteActivity : AppCompatActivity() {
         backToWelcome=findViewById<Button>(R.id.backToWelcome)
         otroReporte.setOnClickListener(otroReporteClickListener())
         backToWelcome.setOnClickListener(backToWelcomeClickListener())
-        busca = findViewById(R.id.busca)
-        //busca.setOnClickListener(clicBusca())
+        busca = findViewById(R.id.buscaPost)
+        busca.setOnClickListener(clicBusca())
     }
     private fun otroReporteClickListener(): View.OnClickListener?{
         return View.OnClickListener{

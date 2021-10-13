@@ -21,14 +21,12 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import com.example.tamayoreport.R
 import com.example.tamayoreport.Utils
 import com.example.tamayoreport.model.Model
 import com.example.tamayoreport.model.entities.Report
 import com.example.tamayoreport.model.repository.responseinterface.IAddReport
-import com.example.tamayoreport.model.repository.responseinterface.IDeleteProduct
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
@@ -192,8 +190,9 @@ class Reporte : AppCompatActivity() {
             }
             val report = Report(
                 id=userId,
+                idUsuario = userId,
                 categoria = category,
-                null,
+                foto = null,
                 "",
                 ubicacion = location,
                 descripcion = description,

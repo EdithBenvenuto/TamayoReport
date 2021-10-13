@@ -18,7 +18,7 @@ import retrofit2.Response
 class Model (private val token:String){
     fun getReports(callback: IGetReports) {
         val retrofit = RemoteRepository.getRetrofitInstance(token)
-        val callGetUser = retrofit.create(ReportsApi::class.java).getProducts()
+        val callGetUser = retrofit.create(ReportsApi::class.java).getReports()
         callGetUser.enqueue(object : Callback<List<Report>?> {
             override fun onResponse(
                 call: Call<List<Report>?>,
