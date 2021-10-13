@@ -18,8 +18,8 @@ class CategoriesActivity : AppCompatActivity() {
     lateinit var desperfInstLayout: RelativeLayout
     lateinit var malUsoLayout: RelativeLayout
     lateinit var otrosLayout: RelativeLayout
-    lateinit var Crea: Button
-    lateinit var Busca: Button
+//    lateinit var Crea: Button
+//    lateinit var Busca: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_categories)
@@ -43,24 +43,24 @@ class CategoriesActivity : AppCompatActivity() {
         malUsoLayout.setOnClickListener(layoutClickListener("Mal uso de instalaciones o faltas al reglamento"))
         otrosLayout.setOnClickListener(layoutClickListener("Otros"))
 
-        Crea = findViewById(R.id.Crea)
-        Busca = findViewById(R.id.Busca)
-
-        Crea.setOnClickListener(clicCrea())
-        Busca.setOnClickListener(clicBusca())
+//        Crea = findViewById(R.id.Crea)
+//        Busca = findViewById(R.id.Busca)
+//
+//        Crea.setOnClickListener(clicCrea())
+//        Busca.setOnClickListener(clicBusca())
     }
-    fun clicCrea(): View.OnClickListener?{
-        return View.OnClickListener{
-            val switchActivityIntent = Intent(applicationContext, CategoriesActivity::class.java)
-            startActivity(switchActivityIntent);
-        }
-    }
-    fun clicBusca(): View.OnClickListener?{
-        return View.OnClickListener{
-            val switchActivityIntent = Intent(applicationContext, lista_reportes::class.java)
-            startActivity(switchActivityIntent);
-        }
-    }
+//    fun clicCrea(): View.OnClickListener?{
+//        return View.OnClickListener{
+//            val switchActivityIntent = Intent(applicationContext, CategoriesActivity::class.java)
+//            startActivity(switchActivityIntent);
+//        }
+//    }
+//    fun clicBusca(): View.OnClickListener?{
+//        return View.OnClickListener{
+//            val switchActivityIntent = Intent(applicationContext, lista_reportes::class.java)
+//            startActivity(switchActivityIntent);
+//        }
+//    }
     private fun layoutClickListener(s:String): View.OnClickListener?{
         return View.OnClickListener{
             //Toast.makeText(this, s, Toast.LENGTH_SHORT).show()

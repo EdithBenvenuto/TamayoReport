@@ -1,17 +1,14 @@
 package com.example.tamayoreport
 
 import android.graphics.Color
-import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tamayoreport.model.entities.Report
-import com.squareup.picasso.Picasso
 
 class ListAdapter(
     val datos: List<Report>,
@@ -44,19 +41,20 @@ class ListAdapter(
             var imagen = view.findViewById<ImageView>(R.id.img)
             var fecha = view.findViewById<TextView>(R.id.fecha)
             var fondo = view.findViewById<LinearLayout>(R.id.back)
-            if(report.description.length>25) {
-                texto.text = report.description.substring(0,25)+"..."
+            if(report.descripcion.length>25) {
+                texto.text = report.descripcion.substring(0,25)+"..."
             }
             else{
-                texto.text = report.description
+                texto.text = report.descripcion
             }
-            fecha.text = report.date
-            when (report.state) {
-                "Recibido" -> fondo.setBackgroundColor(Color.parseColor("#F75437"))
-                "En proceso" -> fondo.setBackgroundColor(Color.parseColor("#F7DD37"))
-                "Resuelto" -> fondo.setBackgroundColor(Color.parseColor("#37F780"))
-            }
-            when (report.category) {
+            fecha.text = report.fechaReporte
+            when (report.estado) {
+                "Recibido" -> texto.setTextColor(Color.parseColor("#DD3E4D"))
+                "En proceso" -> texto.setTextColor(Color.parseColor("#F7A22F"))
+                "Resuelto" -> texto.setTextColor(Color.parseColor("#5EC674"))
+
+        }
+            when (report.categoria) {
                 "Luminarias" -> imagen.setImageResource(R.drawable.luminarias)
                 "Basura" -> imagen.setImageResource(R.drawable.basura)
                 "Heces de Perro" -> imagen.setImageResource(R.drawable.hecesperro)

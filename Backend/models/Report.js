@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const ReportsSchema = new mongoose.Schema({
+    id : {type:String},
     idUsuario : {type: String},
     categoria : {type: String, default: 'other'},
     foto : {type:String},

@@ -10,6 +10,7 @@ import com.example.tamayoreport.R
 class PostReporteActivity : AppCompatActivity() {
     lateinit var otroReporte: Button
     lateinit var backToWelcome: Button
+    lateinit var busca: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post_reporte)
@@ -17,6 +18,8 @@ class PostReporteActivity : AppCompatActivity() {
         backToWelcome=findViewById<Button>(R.id.backToWelcome)
         otroReporte.setOnClickListener(otroReporteClickListener())
         backToWelcome.setOnClickListener(backToWelcomeClickListener())
+        busca = findViewById(R.id.buscaPost)
+        busca.setOnClickListener(clicBusca())
     }
     private fun otroReporteClickListener(): View.OnClickListener?{
         return View.OnClickListener{
@@ -31,5 +34,11 @@ class PostReporteActivity : AppCompatActivity() {
             startActivity(switchActivityIntent);
         }
 
+    }
+    private fun clicBusca(): View.OnClickListener?{
+        return View.OnClickListener{
+            val switchActivityIntent = Intent(applicationContext, lista_reportes::class.java)
+            startActivity(switchActivityIntent);
+        }
     }
 }

@@ -1,63 +1,124 @@
 package com.example.tamayoreport.controller
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
+import android.util.Log
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tamayoreport.ListAdapter
 import com.example.tamayoreport.R
+import com.example.tamayoreport.Utils
 import com.example.tamayoreport.model.entities.Report
+import com.example.tamayoreport.model.Model
+import com.example.tamayoreport.model.repository.responseinterface.IGetReports
 
 class lista_reportes : AppCompatActivity() {
-    var reportesHard: List<Report> = listOf(
-        Report("1","Heces de Perro","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png","11/10","41N 32.3E","perrito miando estoy tratando de sobrebordar todo el pinche texto","Recibido"),
-        Report("2","Basura","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/13.png","05/23","41N 32.3E","la mama","Resuelto"),
-        Report("3","Perro sin correa","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/52.png","03/03","41N 32.3E","de la mama","En proceso"),
-        Report("4","Ramas Obstruyendo el Paso","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/282.png","02/14","41N 32.3E","mientras siga viendo","Resuelto"),
-        Report("5","Perro sin correa","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/342.png","31/03","41N 32.3E","tu cara en la cara","En proceso"),
-        Report("6","Luminarias","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/582.png","06/07","41N 32.3E","de la luna","Resuelto"),
-        Report("7","Mal uso de instalaciones o faltas al reglamento","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png","11/10","41N 32.3E","perrito miando","Recibido"),
-        Report("8","Otros","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/13.png","05/23","41N 32.3E","la mama","Resuelto"),
-        Report("9","Desperfecto en Instalaciones","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/52.png","03/03","41N 32.3E","de la mama","En proceso"),
-        Report("10","Hierba Crecida","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/282.png","02/14","41N 32.3E","mientras siga viendo","Resuelto"),
-        Report("11","Ramas Obstruyendo el Paso","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/342.png","31/03","41N 32.3E","tu cara en la cara","En proceso"),
-        Report("12","Luminarias","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/582.png","06/07","41N 32.3E","de la luna","Resuelto"),
-    )   //Simulacion conexion con backend
-    var tipoUsuario: String = "admin"
-    lateinit var Crea: Button
-    lateinit var Busca: Button
+    lateinit var  sharedPreferences: SharedPreferences
+    var  userId :String =" "
+    var tipoUsuario: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista_reportes)
-        Crea = findViewById(R.id.Crea)
-        Busca = findViewById(R.id.Busca)
-        Crea.setOnClickListener(clicCrea())
-        Busca.setOnClickListener(clicBusca())
-        initRecycler()
-    }
-    fun clicCrea(): View.OnClickListener?{
-        return View.OnClickListener{
-            val switchActivityIntent = Intent(applicationContext, CategoriesActivity::class.java)
-            startActivity(switchActivityIntent);
+        sharedPreferences = this.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        userId = sharedPreferences.getString("shareIdUser", "defaultID").toString()
+        tipoUsuario= sharedPreferences.getBoolean("admin", false)
+
+        if(tipoUsuario){
+            consultaAdmin()
+
+        }else{
+            consultaUsuario()
         }
+
+
     }
-    fun clicBusca(): View.OnClickListener?{
-        return View.OnClickListener{
-            val switchActivityIntent = Intent(applicationContext, lista_reportes::class.java)
-            startActivity(switchActivityIntent);
+    fun consultaAdmin(){
+        Model(Utils.getToken(this)).getReports(object : IGetReports {
+            override fun onSuccess(products: List<Report>?){
+                if (products != null) {
+                    //reportesHard=products
+                    initRecycler(products)
+                    val product: Report = products[0]
+                    //Log.i("reportes",reports.toString())
+                }else{
+                    //Log.i("reportes",reports.toString())
+                }
+            }
+            override fun onNoSuccess(code: Int, message: String) {
+                Toast.makeText(this@lista_reportes, "Problem detected $code $message", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onFailure(t: Throwable) {
+                Toast.makeText(this@lista_reportes, "Network or server error occurred", Toast.LENGTH_SHORT).show()
+            }
         }
+        )
+
     }
-    fun initRecycler(){
+    fun consultaUsuario(){
+        Model(Utils.getToken(this)).getReports(object : IGetReports {
+            override fun onSuccess(products: List<Report>?){
+                if (products != null) {
+                    var listaReportes: MutableList<Report> = ArrayList()
+                    for (i in 0..3) {
+                        Log.i("pepe"+products[i].idUsuario,userId)
+                        if(products[i].idUsuario == userId){
+                            listaReportes.add(products[i])
+                        }
+                    }
+                    //reportesHard=products
+                    Toast.makeText(this@lista_reportes, "Tamaño: "+listaReportes.size.toString(), Toast.LENGTH_SHORT).show()
+                    initRecycler(listaReportes)
+                    //Log.i("reportes",reports.toString())
+                }else{
+                    Toast.makeText(this@lista_reportes, "No has realizado ningun reporte", Toast.LENGTH_SHORT).show()
+                }
+            }
+            override fun onNoSuccess(code: Int, message: String) {
+                Toast.makeText(this@lista_reportes, "Problem detected $code $message", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onFailure(t: Throwable) {
+                Toast.makeText(this@lista_reportes, "Network or server error occurred", Toast.LENGTH_SHORT).show()
+            }
+        }
+        )
+//        Model(Utils.getToken(this)).getUserReports(userId, object : IGetReports {
+//            override fun onSuccess(products: List<Report>?){
+//                if (products != null) {
+//                    //reportesHard=products
+//                    initRecycler(products)
+//                    val product: Report = products[0]
+//                    //Log.i("reportes",reports.toString())
+//                    Toast.makeText(this@lista_reportes, product.categoria.toString() + " size: " + products.size.toString(), Toast.LENGTH_LONG).show()
+//                }else{
+//                    //Log.i("reportes",reports.toString())
+//                    Toast.makeText(this@lista_reportes, products.toString(), Toast.LENGTH_LONG).show()
+//                }
+//            }
+//            override fun onNoSuccess(code: Int, message: String) {
+//                Toast.makeText(this@lista_reportes, "Problem detected $code $message", Toast.LENGTH_SHORT).show()
+//            }
+//
+//            override fun onFailure(t: Throwable) {
+//                Toast.makeText(this@lista_reportes, "Network or server error occurred", Toast.LENGTH_SHORT).show()
+//            }
+//        }
+//        )
+
+    }
+    fun initRecycler(reportesHard: List<Report>){
         var lista = findViewById<RecyclerView>(R.id.Recycler)
         lista.layoutManager = LinearLayoutManager(this)
         val adapter = ListAdapter(reportesHard,object : ListAdapter.OnItemClickListener {
             override fun onItemClick(item: Report) {
                 val category = Bundle()
                 category.putString("id", item.id)
-                if(tipoUsuario=="admin"){
+                if(tipoUsuario){
                     val switchActivityIntent = Intent(applicationContext, VerReporte_Admin::class.java)
                     switchActivityIntent.putExtras(category)
                     startActivity(switchActivityIntent);

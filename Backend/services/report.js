@@ -8,23 +8,20 @@ const ReportModel = require('../models/Report');
 // Now this service is providing whatever is needed to interact with the database but at the same time
 // validating the BLL requirements.
 
-const createReport = async (foto, fechaReporte, categoria,ubicacion,descripcion,idUser) =>{
+const createReport = async (foto, fechaReporte, categoria,ubicacion,descripcion,id, idUser) =>{
     const report =new ReportModel({
-        idUsuario : idUser,
+        id:id,
+        idUsuario : id,
         fechaReporte:fechaReporte,
         categoria: categoria,
         ubicacion: ubicacion,
         descripcion : descripcion,
         estado : "Recibido"
     });
-    console.log("idUser : ",report.idUsuario);
-    console.log("categoria: ", report.categoria);
-    console.log("descripcion: ", report.descripcion);
-    console.log("nuevo Reporte = ", report);
-    if(foto) report.foto = foto.filename;
     
+    if(foto) report.foto = foto.path;
     const newReport = await report.save();
-
+    console.log("nuevo Reporte = ", report);
     return newReport;
 }
 
@@ -42,30 +39,11 @@ const getAllReports = async () =>{
     return reports;
 }
 
-const updateReport = async (id,categoria,fechaReporte,foto,ubicacion,descripcion, keepPhoto) =>{
+const updateReport = async (id,fechaReporte,estado) =>{
     const report = await ReportModel.findById(id);
     report.fechaReporte= fechaReporte;
-    report.categoria = categoria;
-    report.ubicacion=ubicacion;
-    report.descripcion=descripcion;
-
-    const previousPicture = report.foto
-    let removePhoto = false;
-
-    if (foto) {
-        // User uploaded an image, this will overwrite the previous image
-        report.foto = foto.filename;
-    } else {
-        // User did not upload an image, here it might mean to drop the image, keepPhoto will tell
-        if (!keepPhoto) {
-            report.foto = null;
-            removePhoto = true;
-        }
-    }
-
+    report.estado = estado;
     await report.updateOne();
-    if (removePhoto) deletePhoto(previousPicture)
-
     return report;
 }
 

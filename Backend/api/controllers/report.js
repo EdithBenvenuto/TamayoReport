@@ -10,13 +10,14 @@ module.exports = {
         //let {id,category,ubication,description} = req.body.product;
         let reqReport = JSON.parse(req.body.product);
         let id = reqReport._id;
-        let category = reqReport.category;
-        let ubication = reqReport.ubication;
-        let description = reqReport.description;
+        let userId = reqReport.userId;
+        let category = reqReport.categoria;
+        let ubication = reqReport.ubicacion;
+        let description = reqReport.descripcion;
         let fechaReporte = Date.now();
-        console.log("ATRIBUTOS = ", reqReport.category);
+        console.log("ATRIBUTOS = ", reqReport.categoria);
         try{
-            const report = await ReportService.createReport(req.foto,fechaReporte,category,ubication,description,id);
+            const report = await ReportService.createReport(req.file,fechaReporte,category,ubication,description,id, userId);
             res.status(201).json(report); //201 = created
             
         }catch (err){
@@ -40,7 +41,7 @@ module.exports = {
         }
     },
     getUserReports: async (req,res, next) =>{
-        const userId = req.params.id;
+        const userId = JSON.parse(req.body.userId);
         try {
             const reports = await ReportService.getUserReports(userId);
             if (reports) {
@@ -65,21 +66,20 @@ module.exports = {
     },
 
     updateReport: async (req, res, next) => {
-        const reportId = req.params.id;
-        const {id,category,ubication,description,state} = req.body.report;
+        const {id,state} = JSON.parse(req.body);
+        console.log("Update body",req.body)
         let fechaReporte=Date.now;
-        const { keepPhoto } = req.body;
         try {
-            const report = await ReportService.getReport(reportId);
+            const report = await ReportService.getReport(id);
             if (report) {
-                const updateReport = await ReportService.updateReport(reportId, req.foto,fechaReporte,category,ubication, description,state, keepPhoto,id);
+                const updateReport = await ReportService.updateReport(id,fechaReporte,state);
                 res.json(updateReport);
             } else {
-                res.status(404).json({ "message": `Report with id ${reportId} does not exist` });
-                console.log(`Report with id ${reportId} does not exist`);
+                res.status(404).json({ "message": `Report with id ${id} does not exist` });
+                console.log(`Report with id ${id} does not exist`);
             }
         } catch (err) {
-            res.status(500).end(`Request for updating reportId ${reportId} caused an error ${err.message}`);
+            res.status(500).end(`Request for updating reportId ${id} caused an error ${err.message}`);
         }
     },
 

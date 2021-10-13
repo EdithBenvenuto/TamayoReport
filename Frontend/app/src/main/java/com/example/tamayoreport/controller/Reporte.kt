@@ -4,8 +4,10 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -19,14 +21,12 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import com.example.tamayoreport.R
 import com.example.tamayoreport.Utils
 import com.example.tamayoreport.model.Model
 import com.example.tamayoreport.model.entities.Report
 import com.example.tamayoreport.model.repository.responseinterface.IAddReport
-import com.example.tamayoreport.model.repository.responseinterface.IDeleteProduct
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
@@ -37,6 +37,10 @@ import java.util.*
 
 class Reporte : AppCompatActivity() {
     lateinit var reportCategory:TextView
+    lateinit var  sharedPreferences: SharedPreferences
+    var userId : String = ""
+    var tipoUsuario: Boolean = false
+
     companion object {
         private const val CAMERA_PERMISSION_CODE = 100
         private const val FINE_LOCATION_PERMISSION_CODE = 101
@@ -59,10 +63,15 @@ class Reporte : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reporte)
         reportCategory=findViewById(R.id.reportCategory)
+        sharedPreferences = this.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        userId = sharedPreferences.getString("shareIdUser", "defaultID").toString()
+        tipoUsuario = sharedPreferences.getBoolean("admin", false)
+
+
         val b = intent.extras
 
         category = b?.getString("key").toString()
-        val userId = b?.getString("userId").toString()
+
         reportCategory.text = "Reporte "+category
         //Toast.makeText(this, value, Toast.LENGTH_SHORT).show()
 
@@ -180,13 +189,14 @@ class Reporte : AppCompatActivity() {
                 location = locationTxt
             }
             val report = Report(
-                userId,
-                category,
-                null,
+                id=userId,
+                idUsuario = userId,
+                categoria = category,
+                foto = null,
                 "",
-                location,
-                description,
-                "Unresolved"
+                ubicacion = location,
+                descripcion = description,
+                " "
             )
             Model(Utils.getToken(this)).addReport(report, byteArray, object : IAddReport{
                     override fun onSuccess(product: Report?){
