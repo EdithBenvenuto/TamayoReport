@@ -38,26 +38,17 @@ class lista_reportes : AppCompatActivity() {
 
     )   //Simulacion conexion con backend
     var tipoUsuario: String = "admin"
-    lateinit var Crea: Button
-    lateinit var Busca: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista_reportes)
-        Crea = findViewById(R.id.Crea)
-        Busca = findViewById(R.id.Busca)
-        Crea.setOnClickListener(clicCrea())
-        Busca.setOnClickListener(clicBusca())
 
         Model(Utils.getToken(this)).getReports(object : IGetReports {
             override fun onSuccess(products: List<Report>?){
                 if (products != null) {
-                    //reportesHard=products
-                    val product: Report = products[0]
+
                     //Log.i("reportes",reports.toString())
-                    Toast.makeText(this@lista_reportes, product.categoria.toString() + " size: " + products.size.toString(), Toast.LENGTH_LONG).show()
                 }else{
                     //Log.i("reportes",reports.toString())
-                    Toast.makeText(this@lista_reportes, products.toString(), Toast.LENGTH_LONG).show()
                 }
             }
             override fun onNoSuccess(code: Int, message: String) {
@@ -71,18 +62,6 @@ class lista_reportes : AppCompatActivity() {
         )
 
         initRecycler()
-    }
-    fun clicCrea(): View.OnClickListener?{
-        return View.OnClickListener{
-            val switchActivityIntent = Intent(applicationContext, CategoriesActivity::class.java)
-            startActivity(switchActivityIntent);
-        }
-    }
-    fun clicBusca(): View.OnClickListener?{
-        return View.OnClickListener{
-            val switchActivityIntent = Intent(applicationContext, lista_reportes::class.java)
-            startActivity(switchActivityIntent);
-        }
     }
     fun initRecycler(){
         var lista = findViewById<RecyclerView>(R.id.Recycler)

@@ -7,6 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".HomeScreenLoggedFragment">
 
+    <Button
+        android:id="@+id/busca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/morado"
+        android:text="Mis Reportes"
+        app:iconTint="@color/naranja"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newReport"
+        app:rippleColor="@color/purple_500" />
+
     <ImageView
         android:id="@+id/menu"
         android:layout_width="30dp"

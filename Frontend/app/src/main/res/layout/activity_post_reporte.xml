@@ -6,6 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".controller.PostReporteActivity">
 
+    <Button
+        android:id="@+id/busca2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/morado"
+        android:text="Mis Reportes"
+        app:iconTint="@color/naranja"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/otroReporte"
+        app:rippleColor="@color/purple_500" />
+
     <TextView
         android:id="@+id/reportCategory3"
         android:layout_width="0dp"
@@ -28,19 +43,18 @@
         android:id="@+id/backToWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:backgroundTint="@color/morado"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/rojoClaro"
         android:text="volver a inicio"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/otroReporte" />
+        app:layout_constraintTop_toBottomOf="@+id/busca2" />
 
     <Button
         android:id="@+id/otroReporte"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="60dp"
         android:backgroundTint="@color/aqua"
         android:text="Enviar otro reporte"
         app:layout_constraintEnd_toEndOf="parent"

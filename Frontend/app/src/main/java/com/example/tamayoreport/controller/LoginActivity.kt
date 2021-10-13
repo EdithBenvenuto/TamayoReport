@@ -30,7 +30,6 @@ class LoginActivity : AppCompatActivity() {
     }
     private fun loginClickListener(): View.OnClickListener?{
         return View.OnClickListener{
-            Toast.makeText(this, "Validar datos login", Toast.LENGTH_SHORT).show()
             /*val switchActivityIntent = Intent(applicationContext, HomeScreenLoggedActivity::class.java)
             startActivity(switchActivityIntent);*/
             val email = findViewById<EditText>(R.id.txtCorreo).text.toString()
