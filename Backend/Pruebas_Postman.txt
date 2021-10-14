@@ -2,12 +2,12 @@
 // Use raw test option
 
 {
-    "name":"rufino",
-    "email":"Olga@report.com",
-    "password":"1234"
+    "name":"admin",
+    "email":"admin@admin.com",
+    "password":"admin"
 }
 {
-    "name":"Fabrizzio Ramirez",
-    "email":"fabrizzio@ramirez.com",
-    "password":"12345"
+    "name":"Fernando Ramirez",
+    "email":"fab@gmail.com",
+    "password":"1234"
 }

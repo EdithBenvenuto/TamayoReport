@@ -3,6 +3,7 @@ package com.example.tamayoreport.controller
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Patterns
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -46,6 +47,10 @@ class RegistroActivity : AppCompatActivity() {
             val password = findViewById<EditText>(R.id.txtContraRegistro).text.toString();
             val passwordConfirmation = findViewById<EditText>(R.id.txtConfContra).text.toString();
             name += " $lastName"
+
+            if(!email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                Toast.makeText(this,"Correo electrónico inválido.",Toast.LENGTH_SHORT).show();
+            }
             if (password == passwordConfirmation){
                 Toast.makeText(this, name, Toast.LENGTH_SHORT).show()
                 val admin = Admin(

@@ -6,7 +6,11 @@ const multer = require('multer')
 const storageConfig = multer.diskStorage({
     destination: (req, file, callback) => {
         // make sure to create a "productImages" folder before storing files
+        //let fullpath = path.join(`/${reportsPhotoFolder}/`);
+
+        //FOTO FULL PATH:
         let fullPath = path.join(appRoot + `/${reportsPhotoFolder}/`);
+
         callback(null, fullPath);
     },
     filename: (req, file, callback) => {
