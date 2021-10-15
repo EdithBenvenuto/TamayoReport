@@ -39,7 +39,6 @@ class RegistroActivity : AppCompatActivity() {
 
     private fun registerClickListener(): View.OnClickListener?{
         return View.OnClickListener{
-            Toast.makeText(this, "Validar datos registro", Toast.LENGTH_SHORT).show()
 
             var name = findViewById<EditText>(R.id.txtNombre).text.toString();
             val lastName = findViewById<EditText>(R.id.txtApellido).text.toString();
@@ -48,39 +47,61 @@ class RegistroActivity : AppCompatActivity() {
             val passwordConfirmation = findViewById<EditText>(R.id.txtConfContra).text.toString();
             name += " $lastName"
 
-            if(!email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                Toast.makeText(this,"Correo electrónico inválido.",Toast.LENGTH_SHORT).show();
-            }
             if (password == passwordConfirmation){
-                Toast.makeText(this, name, Toast.LENGTH_SHORT).show()
-                val admin = Admin(
-                    "none",
-                    false
-                )
-                val user = User(
-                    "",
-                    name,
-                    email,
-                    password,
-                    admin,
-                    true
-                )
-
-                Model(Utils.getToken(this)).addUsers(user, object: IAddUser{
-                    override fun onSuccess(product: User?){
-                        Toast.makeText(this@RegistroActivity, "Datos enviados", Toast.LENGTH_SHORT).show()
-                        val switchActivityIntent = Intent(applicationContext, LoginActivity::class.java)
-                        startActivity(switchActivityIntent);
-                    }
-                    override fun onNoSuccess(code: Int, message: String) {
-                        Toast.makeText(this@RegistroActivity, "Problem detected $code $message", Toast.LENGTH_SHORT).show()
-                    }
-
-                    override fun onFailure(t: Throwable) {
-                        Toast.makeText(this@RegistroActivity, "Network or server error occurred", Toast.LENGTH_SHORT).show()
-                    }
+                if(password.length<7){
+                    Toast.makeText(this, "La contraseña debe ser de mínimo 7 caracteres", Toast.LENGTH_LONG).show()
                 }
-                )
+                else {
+                    val admin = Admin(
+                        "none",
+                        false
+                    )
+                    val user = User(
+                        "",
+                        name,
+                        email,
+                        password,
+                        admin,
+                        true
+                    )
+
+                    Model(Utils.getToken(this)).addUsers(user, object : IAddUser {
+                        override fun onSuccess(product: User?) {
+                            Toast.makeText(
+                                this@RegistroActivity,
+                                "Datos enviados",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            val switchActivityIntent =
+                                Intent(applicationContext, LoginActivity::class.java)
+                            startActivity(switchActivityIntent);
+                        }
+
+                        override fun onNoSuccess(code: Int, message: String) {
+                            if (code == 500) {
+                                Toast.makeText(
+                                    this@RegistroActivity,
+                                    "Correo electrónico inválido",
+                                    Toast.LENGTH_LONG
+                                ).show();
+                            } else
+                                Toast.makeText(
+                                    this@RegistroActivity,
+                                    "Problem detected $code $message",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                        }
+
+                        override fun onFailure(t: Throwable) {
+                            Toast.makeText(
+                                this@RegistroActivity,
+                                "Network or server error occurred",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                    )
+                }
             }
             else{
                 Toast.makeText(this@RegistroActivity, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
