@@ -63,7 +63,7 @@ class Reporte : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reporte)
         reportCategory=findViewById(R.id.reportCategory)
-        sharedPreferences = this.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        sharedPreferences = this.getSharedPreferences("tokenPrefs", Context.MODE_PRIVATE)
         userId = sharedPreferences.getString("shareIdUser", "defaultID").toString()
         tipoUsuario = sharedPreferences.getBoolean("admin", false)
 
@@ -145,6 +145,7 @@ class Reporte : AppCompatActivity() {
                 .append("Time: ").append(location.time).append("\n")
 
             txtCoordinates.text = sb.toString()
+            Toast.makeText(this@Reporte, txtCoordinates.text.toString(),Toast.LENGTH_SHORT).show()
         }.addOnFailureListener {
             Log.e("tag", "Location couldn't be found")
         }
@@ -179,40 +180,57 @@ class Reporte : AppCompatActivity() {
     }
     private fun btnSend(userId:String): View.OnClickListener {
         return View.OnClickListener {
-            //Aquí se ponen los datos que se mandan a la base de datos, también se manda a la siguiente pantalla
-            //Toast.makeText(this@Reporte, "Datos enviados", Toast.LENGTH_SHORT).show()
-            val description = findViewById<EditText>(R.id.txtDescripcion).text.toString();
-            var location : String = ""
-            if(txtCoordinates.toString() == "Location is: unknown" ){
-                location = txtCoordinates.text.toString()
-            }else{
-                location = locationTxt
-            }
-            val report = Report(
-                id=userId,
-                idUsuario = userId,
-                categoria = category,
-                foto = null,
-                "",
-                ubicacion = location,
-                descripcion = description,
-                " "
-            )
-            Model(Utils.getToken(this)).addReport(report, byteArray, object : IAddReport{
-                    override fun onSuccess(product: Report?){
+            if(Utils.isUserLoggedIn(this@Reporte)) {
+                //Aquí se ponen los datos que se mandan a la base de datos, también se manda a la siguiente pantalla
+                //Toast.makeText(this@Reporte, "Datos enviados", Toast.LENGTH_SHORT).show()
+                val description = findViewById<EditText>(R.id.txtDescripcion).text.toString();
+                var location: String = ""
+
+                if (txtCoordinates.text.toString() != "Location is: unknown") {
+                    location = txtCoordinates.text.toString()
+                } else {
+                    location = locationTxt
+                }
+
+                val report = Report(
+                    id = userId,
+                    idUsuario = userId,
+                    categoria = category,
+                    foto = null,
+                    "",
+                    ubicacion = location,
+                    descripcion = description,
+                    " "
+                )
+
+                Model(Utils.getToken(this)).addReport(report, byteArray, object : IAddReport {
+                    override fun onSuccess(product: Report?) {
                         Toast.makeText(this@Reporte, "Datos enviados", Toast.LENGTH_SHORT).show()
-                        val switchActivityIntent = Intent(applicationContext, PostReporteActivity::class.java)
+                        val switchActivityIntent =
+                            Intent(applicationContext, PostReporteActivity::class.java)
                         startActivity(switchActivityIntent);
                     }
+
                     override fun onNoSuccess(code: Int, message: String) {
-                        Toast.makeText(this@Reporte, "Problem detected $code $message", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@Reporte,
+                            "Problem detected $code $message",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
 
                     override fun onFailure(t: Throwable) {
-                        Toast.makeText(this@Reporte, "Network or server error occurred", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@Reporte,
+                            "Network or server error occurred",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
-            )
+                )
+            }else{
+                Toast.makeText( this@Reporte,"Error{(401: Missing credentials)}", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

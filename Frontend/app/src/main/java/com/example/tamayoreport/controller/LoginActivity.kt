@@ -26,7 +26,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        sharedPreferences = this.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        sharedPreferences = this.getSharedPreferences("tokenPrefs", Context.MODE_PRIVATE)
         iniciarSesion=findViewById<Button>(R.id.inicioSesion)
         registro=findViewById<Button>(R.id.registrate)
         iniciarSesion.setOnClickListener(loginClickListener())

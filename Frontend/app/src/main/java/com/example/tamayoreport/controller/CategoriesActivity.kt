@@ -1,6 +1,7 @@
 package com.example.tamayoreport.controller
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -18,6 +19,7 @@ class CategoriesActivity : AppCompatActivity() {
     lateinit var desperfInstLayout: RelativeLayout
     lateinit var malUsoLayout: RelativeLayout
     lateinit var otrosLayout: RelativeLayout
+
 //    lateinit var Crea: Button
 //    lateinit var Busca: Button
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,4 +73,5 @@ class CategoriesActivity : AppCompatActivity() {
             startActivity(switchActivityIntent);
         }
     }
+
 }

@@ -23,7 +23,7 @@ class lista_reportes : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista_reportes)
-        sharedPreferences = this.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        sharedPreferences = this.getSharedPreferences("tokenPrefs", Context.MODE_PRIVATE)
         userId = sharedPreferences.getString("shareIdUser", "defaultID").toString()
         tipoUsuario= sharedPreferences.getBoolean("admin", false)
 
