@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controller.CategoriesActivity">
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="50dp"
+        android:text="Categorías"
+        android:textAllCaps="true"
+        android:textColor="@color/negro"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/luminariasLayout"
+        android:layout_width="170dp"
+        android:layout_height="97dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/aqua"
+        android:radius="1000dp"
+        app:layout_constraintEnd_toStartOf="@+id/basuraLayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="15dp"
+            android:text="Luminarias"
+            android:textColor="@color/negro"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/luminarias" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/basuraLayout"
+        android:layout_width="170dp"
+        android:layout_height="97dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/azulClaro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/luminariasLayout"
+        app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginBottom="22dp"
+            android:padding="15dp"
+            android:text="Basura"
+            android:textColor="@color/negro"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="71dp"
+            android:layout_height="56dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="21dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/basura" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/perroSinCorreaLayout"
+        android:layout_width="170dp"
+        android:layout_height="97dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/rojoClaro"
+        app:layout_constraintEnd_toStartOf="@+id/hecesPerroLayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/luminariasLayout">
+
+        <TextView
+            android:layout_width="103dp"
+            android:layout_height="81dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:padding="15dp"
+            android:text="Perro sin correa"
+            android:textColor="@color/negro"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="71dp"
+            android:layout_height="56dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="21dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/perrosincorrea" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/hecesPerroLayout"
+        android:layout_width="170dp"
+        android:layout_height="97dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/gris"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/perroSinCorreaLayout"
+        app:layout_constraintTop_toBottomOf="@+id/basuraLayout">
+
+        <TextView
+            android:layout_width="104dp"
+            android:layout_height="75dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginBottom="11dp"
+            android:padding="15dp"
+            android:text="Heces de perro"
+            android:textColor="@color/negro"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="71dp"
+            android:layout_height="56dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="21dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/hecesperro" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/ramasLayout"
+        android:layout_width="170dp"
+        android:layout_height="97dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/beige"
+        app:layout_constraintEnd_toStartOf="@+id/hierbaCrecidaLayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/perroSinCorreaLayout">
+
+        <TextView
+            android:layout_width="113dp"
+            android:layout_height="84dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="-1dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="6dp"
+            android:padding="15dp"
+            android:text="Ramas \nobstruyendo el paso"
+            android:textColor="@color/negro"
+            android:textSize="14dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="71dp"
+            android:layout_height="56dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="21dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/ramasobstruyendo" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/hierbaCrecidaLayout"
+        android:layout_width="170dp"
+        android:layout_height="97dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/verde"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ramasLayout"
+        app:layout_constraintTop_toBottomOf="@+id/hecesPerroLayout">
+
+        <TextView
+            android:layout_width="104dp"
+            android:layout_height="75dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginBottom="11dp"
+            android:padding="15dp"
+            android:text="Hierba crecida"
+            android:textColor="@color/negro"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="71dp"
+            android:layout_height="56dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="21dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/hierbacrecida" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/desperfInstLayout"
+        android:layout_width="170dp"
+        android:layout_height="97dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/amarillo"
+        app:layout_constraintEnd_toStartOf="@+id/malUsoLayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ramasLayout">
+
+        <TextView
+            android:layout_width="117dp"
+            android:layout_height="85dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="-1dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="5dp"
+            android:padding="15dp"
+            android:text="Desperfecto en \ninstalaciones"
+            android:textColor="@color/negro"
+            android:textSize="13dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="71dp"
+            android:layout_height="56dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="21dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/desperfectoinstralaciones" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/malUsoLayout"
+        android:layout_width="170dp"
+        android:layout_height="97dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/rojo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/desperfInstLayout"
+        app:layout_constraintTop_toBottomOf="@+id/hierbaCrecidaLayout">
+
+        <TextView
+            android:layout_width="119dp"
+            android:layout_height="75dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginBottom="11dp"
+            android:padding="15dp"
+            android:text="Mal uso de \ninstalaciones"
+            android:textColor="@color/negro"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="71dp"
+            android:layout_height="56dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="21dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/malusoinstalaciones" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/otrosLayout"
+        android:layout_width="170dp"
+        android:layout_height="97dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/naranja"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/malUsoLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="false"
+            android:layout_marginStart="15dp"
+            android:padding="15dp"
+            android:text="Otros"
+            android:textColor="@color/negro"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="71dp"
+            android:layout_height="56dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="21dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/otros" />
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
