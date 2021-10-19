@@ -13,6 +13,7 @@ import com.example.tamayoreport.model.Model
 import com.example.tamayoreport.model.entities.Report
 import com.example.tamayoreport.model.repository.RemoteRepository
 import com.example.tamayoreport.model.repository.responseinterface.IAddReport
+import com.example.tamayoreport.model.repository.responseinterface.IDeleteProduct
 import com.example.tamayoreport.model.repository.responseinterface.IUpdateReport
 import com.squareup.picasso.Picasso
 
@@ -29,6 +30,7 @@ class VerReporte_Admin : AppCompatActivity() {
     lateinit var boton: Button
     lateinit var nuevoEstado :String
     lateinit var updateReport :Report
+    lateinit var popReport : Button
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +46,8 @@ class VerReporte_Admin : AppCompatActivity() {
         imagen = findViewById(R.id.imageView)
         selecion = findViewById(R.id.grupo)
         boton = findViewById(R.id.botonEstado)
+        popReport = findViewById(R.id.borrarReporte)
+
 
         var radioButton: RadioButton = findViewById(R.id.RB1)
         when(b?.getString("estado").toString()){
@@ -55,7 +59,7 @@ class VerReporte_Admin : AppCompatActivity() {
         radioButton.isChecked = true
         titulo.text = "Reporte de "+ b?.getString("categoria").toString()
         descripcion.text = b?.getString("descripcion").toString()
-        location.text = b?.getString("ubicacion").toString()
+        location.text = b?.getString("ubicacion").toString() + ", Time: " + b?.getString("fechaReporte").toString()
 
 
         if(foto == "null"){
@@ -106,6 +110,22 @@ class VerReporte_Admin : AppCompatActivity() {
                 }
             }
             )
+        }
+        popReport.setOnClickListener(){
+            Model(Utils.getToken(this)).deleteProduct(id, object : IDeleteProduct{
+                override fun onSuccess(product : Report?){
+                    Toast.makeText( this@VerReporte_Admin,"Report Deleted", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+                override fun onNoSuccess(code: Int, message: String) {
+                    Toast.makeText(this@VerReporte_Admin, "Problem detected $code $message", Toast.LENGTH_SHORT).show()
+                }
+                override fun onFailure(t: Throwable) {
+                    Toast.makeText(this@VerReporte_Admin, "Network or server error occurred", Toast.LENGTH_SHORT).show()
+                }
+
+
+            })
         }
     }
 }

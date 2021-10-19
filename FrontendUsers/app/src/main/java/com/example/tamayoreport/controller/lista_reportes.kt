@@ -44,7 +44,7 @@ class lista_reportes : AppCompatActivity() {
                 if (products != null) {
                     //reportesHard=products
                     initRecycler(products)
-                    val product: Report = products[0]
+                    //val product: Report = products[0]
                     //Log.i("reportes",reports.toString())
                 }else{
                     //Log.i("reportes",reports.toString())
@@ -90,29 +90,6 @@ class lista_reportes : AppCompatActivity() {
             }
         }
         )
-//        Model(Utils.getToken(this)).getUserReports(userId, object : IGetReports {
-//            override fun onSuccess(products: List<Report>?){
-//                if (products != null) {
-//                    //reportesHard=products
-//                    initRecycler(products)
-//                    val product: Report = products[0]
-//                    //Log.i("reportes",reports.toString())
-//                    Toast.makeText(this@lista_reportes, product.categoria.toString() + " size: " + products.size.toString(), Toast.LENGTH_LONG).show()
-//                }else{
-//                    //Log.i("reportes",reports.toString())
-//                    Toast.makeText(this@lista_reportes, products.toString(), Toast.LENGTH_LONG).show()
-//                }
-//            }
-//            override fun onNoSuccess(code: Int, message: String) {
-//                Toast.makeText(this@lista_reportes, "Problem detected $code $message", Toast.LENGTH_SHORT).show()
-//            }
-//
-//            override fun onFailure(t: Throwable) {
-//                Toast.makeText(this@lista_reportes, "Network or server error occurred", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//        )
-
     }
     fun initRecycler(reportesHard: List<Report>){
         var lista = findViewById<RecyclerView>(R.id.Recycler)

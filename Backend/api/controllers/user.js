@@ -8,8 +8,8 @@ const {generateToken} = require('../middlewares/authentication')
 module.exports = {
     createUser: async(req,res,next) =>{
         const online = false
-        const admin = {adminType: "usuario", admin: false};
-        let {name,email,password} = req.body; // JSON.parse(req.body.user);
+        //const admin = {adminType: "usuario", admin: false};
+        let {name,email,password,admin} = req.body; // JSON.parse(req.body.user);
         try{
             const user = await UserService.createUser(name,email,password,admin,online);
             res.status(201).json(user);

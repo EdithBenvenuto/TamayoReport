@@ -53,7 +53,7 @@ class RegistroActivity : AppCompatActivity() {
                 }
                 else {
                     val admin = Admin(
-                        "none",
+                        "usuario",
                         false
                     )
                     val user = User(

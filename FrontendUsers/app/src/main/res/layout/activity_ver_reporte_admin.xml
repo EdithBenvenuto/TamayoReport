@@ -10,68 +10,58 @@
         android:id="@+id/descripcion"
         android:layout_width="250dp"
         android:layout_height="43dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="8dp"
         android:text="Esto es un ejemplo de una descripcion de un reporte"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.496" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/location"
         android:layout_width="175dp"
-        android:layout_height="35dp"
-        android:layout_marginBottom="200dp"
+        android:layout_height="wrap_content"
         android:backgroundTint="#FFFFFF"
         android:text="Location is: unknown"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descripcion"
-        app:layout_constraintVertical_bias="0.229" />
+        app:layout_constraintTop_toBottomOf="@+id/descripcion" />
 
     <TextView
         android:id="@+id/titulo"
-        android:layout_width="0dp"
+        android:layout_width="347dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginTop="32dp"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.127"
         tools:text="Reporte" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="293dp"
         android:layout_height="202dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titulo"
-        app:layout_constraintVertical_bias="0.060000002"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <RadioGroup
         android:id="@+id/grupo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,8 +71,8 @@
             android:id="@+id/RB1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Recibido"
-            android:checked="true" />
+            android:checked="true"
+            android:text="Recibido" />
 
         <RadioButton
             android:id="@+id/RB2"
@@ -101,9 +91,24 @@
         android:id="@+id/botonEstado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/verde"
         android:text="Actualizar Estado"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/grupo" />
+
+    <Button
+        android:id="@+id/borrarReporte"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/rojo"
+        android:text="Eliminar Reporte"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/botonEstado" />
 </androidx.constraintlayout.widget.ConstraintLayout>

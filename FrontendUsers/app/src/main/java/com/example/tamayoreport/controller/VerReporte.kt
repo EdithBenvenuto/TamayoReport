@@ -48,7 +48,7 @@ class VerReporte : AppCompatActivity() {
         estadoReporte = findViewById(R.id.estadoReporte)
         titulo.text = "Reporte de "+ b?.getString("categoria").toString()
         descripcion.text = b?.getString("descripcion").toString()
-        location.text = b?.getString("ubicacion").toString()
+        location.text = b?.getString("ubicacion").toString() + ", Time: " + b?.getString("fechaReporte").toString()
         estadoReporte.text =  b?.getString("estado").toString()
 
         when (estadoReporte.text.toString()) {

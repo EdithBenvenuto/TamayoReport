@@ -33,6 +33,7 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.CancellationTokenSource
 import com.google.android.material.snackbar.Snackbar
 import java.io.ByteArrayOutputStream
+import java.text.SimpleDateFormat
 import java.util.*
 
 class Reporte : AppCompatActivity() {
@@ -71,6 +72,7 @@ class Reporte : AppCompatActivity() {
         val b = intent.extras
 
         category = b?.getString("key").toString()
+
 
         reportCategory.text = "Reporte "+category
         //Toast.makeText(this, value, Toast.LENGTH_SHORT).show()
@@ -141,8 +143,7 @@ class Reporte : AppCompatActivity() {
             val sb= StringBuffer()
 
             sb.append("Latitude: ").append(location.latitude).append(", ")
-                .append("Longitude: ").append(location.longitude).append(", ")
-                .append("Time: ").append(location.time).append("\n")
+                .append("Longitude: ").append(location.longitude)
 
             txtCoordinates.text = sb.toString()
             Toast.makeText(this@Reporte, txtCoordinates.text.toString(),Toast.LENGTH_SHORT).show()
@@ -299,6 +300,15 @@ class Reporte : AppCompatActivity() {
             val uri = Uri.fromParts("package", this@Reporte.packageName, null)
             intent.data = uri
             startActivity(intent)
+        }
+    }
+    private fun getDateTime(s: Long): String? {
+        try {
+            val sdf = SimpleDateFormat("MM/dd/yyyy")
+            val netDate = Date(s * 1000)
+            return sdf.format(netDate)
+        } catch (e: Exception) {
+            return e.toString()
         }
     }
 

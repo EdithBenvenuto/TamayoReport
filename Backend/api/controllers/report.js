@@ -92,6 +92,7 @@ module.exports = {
         const reportId = req.params.id;
         try {
             const report = await ReportService.deleteReport(reportId);
+            console.log("Report :",reportId,"Deleted from database")
             res.json(report);
         } catch (err) {
             res.status(500).json({ "message": `Request for deleting reportId ${reportId} caused an error` });
