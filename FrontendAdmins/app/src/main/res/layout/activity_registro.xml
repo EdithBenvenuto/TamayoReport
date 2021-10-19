@@ -11,13 +11,15 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:text="Bienviend@"
+        android:layout_marginTop="48dp"
+        android:text="Registra un nuevo administrador"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@color/negro"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -101,7 +103,7 @@
         android:id="@+id/confirmarRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="160dp"
         android:backgroundTint="@color/verde"
         android:text="registrate"
         app:layout_constraintEnd_toEndOf="parent"
@@ -109,27 +111,55 @@
         app:layout_constraintTop_toBottomOf="@+id/txtConfContra" />
 
     <Button
-        android:id="@+id/inicioSesion"
+        android:id="@+id/volver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="@color/aqua"
-        android:text="iniciar sesión"
+        android:text="Volver"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reportCategory" />
-
-    <TextView
-        android:id="@+id/reportCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Si ya tienes una cuenta"
-        android:textColor="@color/negro"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmarRegistro" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Inserta el tipo de administrador"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtConfContra" />
+
+    <RadioGroup
+        android:id="@+id/rgTypeAdmins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:isScrollContainer="false"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/confirmarRegistro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7">
+
+        <RadioButton
+            android:id="@+id/rbiluminarias"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Gerente de conservación" />
+
+        <RadioButton
+            android:id="@+id/rbdirector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Director" />
+
+        <RadioButton
+            android:id="@+id/rbjardineria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Supervisor de jardinería" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

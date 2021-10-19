@@ -12,8 +12,7 @@ import android.widget.ImageButton
 import com.example.tamayoreport.R
 
 class HomeScreenLoggedActivity : AppCompatActivity() {
-    lateinit var newReport: Button
-    lateinit var busca: Button
+    lateinit var newAdmin: Button
     lateinit var instagram:ImageButton
     lateinit var webPage:ImageButton
     lateinit var facebook:ImageButton
@@ -26,12 +25,9 @@ class HomeScreenLoggedActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_home_screen_logged)
-        val b = intent.extras
-        val userid = b?.getString("userId").toString()
-        newReport=findViewById<Button>(R.id.newReport)
-        newReport.setOnClickListener(newReportClickListener(userid))
-        busca = findViewById(R.id.busca)
-        busca.setOnClickListener(clicBusca())
+        newAdmin = findViewById<Button>(R.id.registrarAdmin)
+        newAdmin.setOnClickListener(newAdminListener())
+
         sharedPreferences = this.getSharedPreferences("tokenPrefs", Context.MODE_PRIVATE)
         logout = findViewById(R.id.logout)
         logout.setOnClickListener(clearSharedPreferences())
@@ -46,29 +42,14 @@ class HomeScreenLoggedActivity : AppCompatActivity() {
     }
     private fun openSocialMedia(url:String): View.OnClickListener? {
         return View.OnClickListener {
-
             val i = Intent(Intent.ACTION_VIEW)
             i.data = Uri.parse(url)
             startActivity(i)
         }
-
-
     }
-
-
-    private fun newReportClickListener(userId : String): View.OnClickListener?{
+    private fun newAdminListener(): View.OnClickListener?{
         return View.OnClickListener{
-            val userid = Bundle()
-            userid.putString("userId", userId);
-            val switchActivityIntent = Intent(applicationContext, CategoriesActivity::class.java);
-            switchActivityIntent.putExtras(userid);
-            startActivity(switchActivityIntent);
-        }
-    }
-    private fun clicBusca(): View.OnClickListener?{
-        return View.OnClickListener{
-            val switchActivityIntent = Intent(applicationContext, lista_reportes::class.java)
-            //switchActivityIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            val switchActivityIntent = Intent(applicationContext, RegistroActivity::class.java);
             startActivity(switchActivityIntent);
         }
     }

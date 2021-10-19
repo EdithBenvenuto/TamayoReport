@@ -1,7 +1,6 @@
 package com.example.tamayoreport.controller
 
 import android.content.Intent
-import android.media.Image
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -21,10 +20,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        iniciarSesion=findViewById<Button>(R.id.inicioSesion)
-        registro=findViewById<Button>(R.id.registrate)
+        iniciarSesion=findViewById<Button>(R.id.volver)
+
         iniciarSesion.setOnClickListener(loginClickListener())
-        registro.setOnClickListener(registerClickListener())
 
         instagram = findViewById(R.id.instagram)
         webPage = findViewById(R.id.webPage)
@@ -40,22 +38,10 @@ class MainActivity : AppCompatActivity() {
             i.data = Uri.parse(url)
             startActivity(i)
         }
-
-
     }
-
-
-
     private fun loginClickListener():View.OnClickListener?{
         return View.OnClickListener{
             val switchActivityIntent = Intent(applicationContext, LoginActivity::class.java)
-            startActivity(switchActivityIntent);
-        }
-    }
-
-    private fun registerClickListener():View.OnClickListener?{
-        return View.OnClickListener{
-            val switchActivityIntent = Intent(applicationContext, RegistroActivity::class.java);
             startActivity(switchActivityIntent);
         }
     }

@@ -27,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         sharedPreferences = this.getSharedPreferences("tokenPrefs", Context.MODE_PRIVATE)
-        iniciarSesion=findViewById<Button>(R.id.inicioSesion)
+        iniciarSesion=findViewById<Button>(R.id.volver)
         registro=findViewById<Button>(R.id.registrate)
         iniciarSesion.setOnClickListener(loginClickListener())
         registro.setOnClickListener(registerClickListener())
@@ -53,10 +53,14 @@ class LoginActivity : AppCompatActivity() {
                         editor.putBoolean("admin",token.admin)
                         if(token.admin){
                             Toast.makeText(this@LoginActivity , "Accediste como admin", Toast.LENGTH_SHORT).show()
+                            editor.apply()
+                            advanceToMainActivity()
+                        }
+                        else{
+                            Toast.makeText(this@LoginActivity , "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
                         }
 
-                        editor.apply()
-                        advanceToMainActivity()
+
                     } else {
                         // do not advance, an error occurred
                         Toast.makeText(

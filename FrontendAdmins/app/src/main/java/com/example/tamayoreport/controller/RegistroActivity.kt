@@ -3,36 +3,34 @@ package com.example.tamayoreport.controller
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Patterns
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.RadioGroup
 import android.widget.Toast
 import com.example.tamayoreport.R
 import com.example.tamayoreport.Utils
 import com.example.tamayoreport.model.Model
 import com.example.tamayoreport.model.entities.Admin
-import com.example.tamayoreport.model.entities.Report
 import com.example.tamayoreport.model.entities.User
-import com.example.tamayoreport.model.repository.responseinterface.IAddReport
 import com.example.tamayoreport.model.repository.responseinterface.IAddUser
-import com.example.tamayoreport.model.repository.responseinterface.IDeleteProduct
-import com.google.android.gms.tasks.OnSuccessListener
 
 class RegistroActivity : AppCompatActivity() {
-    lateinit var iniciarSesion: Button
+    lateinit var volver: Button
     lateinit var registro: Button
+    lateinit var seleccion: RadioGroup
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registro)
-        iniciarSesion=findViewById<Button>(R.id.inicioSesion)
+        volver=findViewById<Button>(R.id.volver)
         registro=findViewById<Button>(R.id.confirmarRegistro)
-        iniciarSesion.setOnClickListener(loginClickListener())
+        volver.setOnClickListener(volverClickListener())
         registro.setOnClickListener(registerClickListener())
+        seleccion = findViewById(R.id.rgTypeAdmins)
     }
-    private fun loginClickListener(): View.OnClickListener?{
+    private fun volverClickListener(): View.OnClickListener?{
         return View.OnClickListener{
-            val switchActivityIntent = Intent(applicationContext, LoginActivity::class.java)
+            val switchActivityIntent = Intent(applicationContext, HomeScreenLoggedActivity::class.java)
             startActivity(switchActivityIntent);
         }
     }
@@ -46,6 +44,12 @@ class RegistroActivity : AppCompatActivity() {
             val password = findViewById<EditText>(R.id.txtContraRegistro).text.toString();
             val passwordConfirmation = findViewById<EditText>(R.id.txtConfContra).text.toString();
             name += " $lastName"
+            var adminType: String = ""
+            when (seleccion.checkedRadioButtonId) {
+                R.id.rbiluminarias ->  adminType = "Gerente de conservación" //Toast.makeText(applicationContext, "Cambia estado a 'Recibido'", Toast.LENGTH_SHORT).show()
+                R.id.rbdirector -> adminType = "Director" //Toast.makeText(applicationContext, "Cambia estado a 'En proceso'", Toast.LENGTH_SHORT).show()
+                R.id.rbjardineria -> adminType = "Supervisor de jardinería"//Toast.makeText(applicationContext, "Cambia estado a 'Resuelto'", Toast.LENGTH_SHORT).show()
+            }
 
             if (password == passwordConfirmation){
                 if(password.length<7){
@@ -53,8 +57,8 @@ class RegistroActivity : AppCompatActivity() {
                 }
                 else {
                     val admin = Admin(
-                        "none",
-                        false
+                        adminType,
+                        true
                     )
                     val user = User(
                         "",

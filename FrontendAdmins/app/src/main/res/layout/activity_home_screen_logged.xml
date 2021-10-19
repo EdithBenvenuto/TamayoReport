@@ -7,21 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".controller.HomeScreenLoggedActivity">
 
-    <Button
-        android:id="@+id/busca"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_weight="1"
-        android:backgroundTint="@color/morado"
-        android:text="Reportes "
-        android:textSize="16sp"
-        app:iconTint="@color/naranja"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newReport"
-        app:rippleColor="@color/purple_500" />
-
     <ImageView
         android:id="@+id/notificaciones"
         android:layout_width="25dp"
@@ -68,15 +53,15 @@
         app:srcCompat="@drawable/tamayoreport3" />
 
     <Button
-        android:id="@+id/newReport"
+        android:id="@+id/registrarAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="68dp"
         android:backgroundTint="@color/rojo"
-        android:text="Realizar nuevo reporte"
+        android:text="Registrar nuevo administrador"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView6" />
 
