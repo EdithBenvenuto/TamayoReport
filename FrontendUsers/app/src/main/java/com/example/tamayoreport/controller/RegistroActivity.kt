@@ -52,17 +52,15 @@ class RegistroActivity : AppCompatActivity() {
                     Toast.makeText(this, "La contraseña debe ser de mínimo 7 caracteres", Toast.LENGTH_LONG).show()
                 }
                 else {
-                    val admin = Admin(
-                        "usuario",
-                        false
-                    )
+
                     val user = User(
                         "",
                         name,
                         email,
                         password,
-                        admin,
-                        true
+                        admintype = "usuario",
+                        false,
+                        online = false
                     )
 
                     Model(Utils.getToken(this)).addUsers(user, object : IAddUser {

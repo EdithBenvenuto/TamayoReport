@@ -7,31 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".controller.HomeScreenLoggedActivity">
 
-    <ImageView
-        android:id="@+id/notificaciones"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintEnd_toStartOf="@+id/buscar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/notification" />
-
-    <ImageView
-        android:id="@+id/buscar"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/search" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="Parque Rufino y Olga TAMAYO"
         android:textAlignment="center"
         android:textColor="#262626"
@@ -39,7 +18,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notificaciones" />
+        app:layout_constraintTop_toBottomOf="@+id/logout" />
 
     <ImageView
         android:id="@+id/imageView6"

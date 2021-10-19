@@ -105,7 +105,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="160dp"
         android:backgroundTint="@color/verde"
-        android:text="registrate"
+        android:text="Registrar Colaborador"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtConfContra" />
@@ -153,6 +153,7 @@
             android:id="@+id/rbdirector"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:checked="true"
             android:text="Director" />
 
         <RadioButton

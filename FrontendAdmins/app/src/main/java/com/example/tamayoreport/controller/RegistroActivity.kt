@@ -11,8 +11,8 @@ import android.widget.Toast
 import com.example.tamayoreport.R
 import com.example.tamayoreport.Utils
 import com.example.tamayoreport.model.Model
-import com.example.tamayoreport.model.entities.Admin
 import com.example.tamayoreport.model.entities.User
+
 import com.example.tamayoreport.model.repository.responseinterface.IAddUser
 
 class RegistroActivity : AppCompatActivity() {
@@ -56,18 +56,18 @@ class RegistroActivity : AppCompatActivity() {
                     Toast.makeText(this, "La contraseña debe ser de mínimo 7 caracteres", Toast.LENGTH_LONG).show()
                 }
                 else {
-                    val admin = Admin(
-                        adminType,
-                        true
+
+                    val user  = User(
+                        id = "",
+                        name = name,
+                        email = email,
+                        password = password,
+                        admintype = adminType,
+                        admin = true,
+                        online = false
                     )
-                    val user = User(
-                        "",
-                        name,
-                        email,
-                        password,
-                        admin,
-                        true
-                    )
+
+
 
                     Model(Utils.getToken(this)).addUsers(user, object : IAddUser {
                         override fun onSuccess(product: User?) {
@@ -76,8 +76,9 @@ class RegistroActivity : AppCompatActivity() {
                                 "Datos enviados",
                                 Toast.LENGTH_SHORT
                             ).show()
+
                             val switchActivityIntent =
-                                Intent(applicationContext, LoginActivity::class.java)
+                                Intent(applicationContext, HomeScreenLoggedActivity::class.java)
                             startActivity(switchActivityIntent);
                         }
 
@@ -97,11 +98,7 @@ class RegistroActivity : AppCompatActivity() {
                         }
 
                         override fun onFailure(t: Throwable) {
-                            Toast.makeText(
-                                this@RegistroActivity,
-                                "Network or server error occurred",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            //Toast.makeText(this@RegistroActivity,"Network or server error occurred",Toast.LENGTH_SHORT).show()
                         }
                     }
                     )

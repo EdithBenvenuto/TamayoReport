@@ -13,7 +13,6 @@ import android.widget.Toast
 import com.example.tamayoreport.R
 import com.example.tamayoreport.Utils
 import com.example.tamayoreport.model.Model
-import com.example.tamayoreport.model.entities.Admin
 import com.example.tamayoreport.model.entities.JwtToken
 import com.example.tamayoreport.model.entities.User
 import com.example.tamayoreport.model.repository.RemoteRepository
@@ -21,16 +20,15 @@ import com.example.tamayoreport.model.repository.responseinterface.ILogin
 
 class LoginActivity : AppCompatActivity() {
     lateinit var iniciarSesion: Button
-    lateinit var registro: Button
    lateinit var  sharedPreferences: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         sharedPreferences = this.getSharedPreferences("tokenPrefs", Context.MODE_PRIVATE)
         iniciarSesion=findViewById<Button>(R.id.volver)
-        registro=findViewById<Button>(R.id.registrate)
+
         iniciarSesion.setOnClickListener(loginClickListener())
-        registro.setOnClickListener(registerClickListener())
+
     }
     private fun loginClickListener(): View.OnClickListener?{
         return View.OnClickListener{
@@ -38,8 +36,8 @@ class LoginActivity : AppCompatActivity() {
             startActivity(switchActivityIntent);*/
             val email = findViewById<EditText>(R.id.txtCorreo).text.toString()
             val password = findViewById<EditText>(R.id.txtContra).text.toString()
-            val admin = Admin("anytype", false)
-            val user = User("","anyname", email, password, admin, true)
+
+            val user = User("","anyname", email, password, "",false, true)
 
             Model(Utils.getToken(this)).login(user, object : ILogin {
                 override fun onSuccess(token: JwtToken?) {
@@ -97,10 +95,5 @@ class LoginActivity : AppCompatActivity() {
         startActivity(mainActivityIntent)
     }
 
-    private fun registerClickListener(): View.OnClickListener?{
-        return View.OnClickListener{
-            val switchActivityIntent = Intent(applicationContext, RegistroActivity::class.java);
-            startActivity(switchActivityIntent);
-        }
-    }
+
 }

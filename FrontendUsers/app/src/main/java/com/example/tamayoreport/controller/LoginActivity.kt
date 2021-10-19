@@ -39,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
             val email = findViewById<EditText>(R.id.txtCorreo).text.toString()
             val password = findViewById<EditText>(R.id.txtContra).text.toString()
             val admin = Admin("anytype", false)
-            val user = User("","anyname", email, password, admin, true)
+            val user = User("","anyname", email, password, "",false,true)
 
             Model(Utils.getToken(this)).login(user, object : ILogin {
                 override fun onSuccess(token: JwtToken?) {

@@ -18,7 +18,7 @@ class HomeScreenLoggedActivity : AppCompatActivity() {
     lateinit var facebook:ImageButton
     lateinit var logout :Button
     lateinit var sharedPreferences: SharedPreferences
-    lateinit var tokenShp:SharedPreferences
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

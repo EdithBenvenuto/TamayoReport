@@ -1,9 +1,7 @@
 package com.example.tamayoreport.model.repository.backendinterface
 
 import com.example.tamayoreport.model.entities.JwtToken
-import com.example.tamayoreport.model.entities.Report
 import com.example.tamayoreport.model.entities.User
-import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
 
