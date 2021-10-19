@@ -91,8 +91,11 @@ class VerReporte_Admin : AppCompatActivity() {
             Model(Utils.getToken(this)).updateReport(updateReport, object : IUpdateReport {
                 override fun onSuccess(product: Report?){
                     Toast.makeText(this@VerReporte_Admin, "Datos enviados", Toast.LENGTH_SHORT).show()
-                    val switchActivityIntent = Intent(applicationContext, lista_reportes::class.java)
-                    startActivity(switchActivityIntent);
+                    finish()
+                    //val switchActivityIntent = Intent(applicationContext, lista_reportes::class.java)
+                    //switchActivityIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    //startActivity(switchActivityIntent);
+
                 }
                 override fun onNoSuccess(code: Int, message: String) {
                     Toast.makeText(this@VerReporte_Admin, "Problem detected $code $message", Toast.LENGTH_SHORT).show()

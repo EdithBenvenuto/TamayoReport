@@ -64,6 +64,7 @@ const deleteReport = async (id) => {
     if (report.foto) {
         deletePhoto(report.foto);
     }
+    
     return report;
 }
 

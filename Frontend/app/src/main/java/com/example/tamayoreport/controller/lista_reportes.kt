@@ -27,14 +27,16 @@ class lista_reportes : AppCompatActivity() {
         userId = sharedPreferences.getString("shareIdUser", "defaultID").toString()
         tipoUsuario= sharedPreferences.getBoolean("admin", false)
 
+    }
+
+    override fun onResume() {
+        super.onResume()
         if(tipoUsuario){
             consultaAdmin()
 
         }else{
             consultaUsuario()
         }
-
-
     }
     fun consultaAdmin(){
         Model(Utils.getToken(this)).getReports(object : IGetReports {

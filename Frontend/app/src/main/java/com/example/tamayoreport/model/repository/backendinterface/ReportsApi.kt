@@ -44,5 +44,5 @@ interface ReportsApi {
     //fun getUserReports(@Body userId: String): Call<List<Report>>
 
     @DELETE("reports/{id}")
-    fun deleteProduct(@Path("reportId") productId: String): Call<Report>
+    fun deleteProduct(@Path("id") productId: String): Call<Report>
 }

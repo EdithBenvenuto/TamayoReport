@@ -68,6 +68,7 @@ class HomeScreenLoggedActivity : AppCompatActivity() {
     private fun clicBusca(): View.OnClickListener?{
         return View.OnClickListener{
             val switchActivityIntent = Intent(applicationContext, lista_reportes::class.java)
+            //switchActivityIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(switchActivityIntent);
         }
     }
