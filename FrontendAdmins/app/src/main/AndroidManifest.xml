@@ -16,25 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TamayoReport">
         <activity
-            android:name=".controller.VerReporte_Admin"
-            android:exported="true" />
-        <activity
-            android:name=".controller.lista_reportes"
-            android:exported="true" />
-        <activity
-            android:name=".controller.VerReporte"
-            android:exported="true" />
-        <activity
-            android:name=".controller.PostReporteActivity"
-            android:exported="true" />
-        <activity
-            android:name=".controller.CategoriesActivity"
-            android:exported="true" />
-        <activity
             android:name=".controller.HomeScreenLoggedActivity"
-            android:exported="true" />
-        <activity
-            android:name=".controller.Reporte"
             android:exported="true" />
         <activity
             android:name=".controller.RegistroActivity"

@@ -99,6 +99,15 @@ class RegistroActivity : AppCompatActivity() {
 
                         override fun onFailure(t: Throwable) {
                             //Toast.makeText(this@RegistroActivity,"Network or server error occurred",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                this@RegistroActivity,
+                                "Datos enviados",
+                                Toast.LENGTH_SHORT
+                            ).show()
+
+                            val switchActivityIntent =
+                                Intent(applicationContext, HomeScreenLoggedActivity::class.java)
+                            startActivity(switchActivityIntent);
                         }
                     }
                     )
