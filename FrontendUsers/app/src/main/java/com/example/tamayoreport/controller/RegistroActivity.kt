@@ -52,7 +52,7 @@ class RegistroActivity : AppCompatActivity() {
                     Toast.makeText(this, "La contraseña debe ser de mínimo 7 caracteres", Toast.LENGTH_LONG).show()
                 }
                 else {
-
+                    /*
                     val user = User(
                         "",
                         name,
@@ -61,7 +61,11 @@ class RegistroActivity : AppCompatActivity() {
                         admintype = "usuario",
                         false,
                         online = false
+                    )*/
+                    val user = User(
+                        name, email, password, Admin("usuario", false),false, ""
                     )
+
 
                     Model(Utils.getToken(this)).addUsers(user, object : IAddUser {
                         override fun onSuccess(product: User?) {
@@ -70,9 +74,12 @@ class RegistroActivity : AppCompatActivity() {
                                 "Datos enviados",
                                 Toast.LENGTH_SHORT
                             ).show()
+                            finish()
+                            /*
                             val switchActivityIntent =
                                 Intent(applicationContext, LoginActivity::class.java)
                             startActivity(switchActivityIntent);
+                             */
                         }
 
                         override fun onNoSuccess(code: Int, message: String) {
@@ -91,11 +98,12 @@ class RegistroActivity : AppCompatActivity() {
                         }
 
                         override fun onFailure(t: Throwable) {
-//                            Toast.makeText(
-//                                this@RegistroActivity,
-//                                "Network or server error occurred",
-//                                Toast.LENGTH_SHORT
-//                            ).show()
+                            Toast.makeText(
+                                this@RegistroActivity,
+                                "Network or server error occurred",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            /*
                             Toast.makeText(
                                 this@RegistroActivity,
                                 "Datos enviados",
@@ -104,6 +112,7 @@ class RegistroActivity : AppCompatActivity() {
                             val switchActivityIntent =
                                 Intent(applicationContext, LoginActivity::class.java)
                             startActivity(switchActivityIntent);
+                            */
                         }
                     }
                     )

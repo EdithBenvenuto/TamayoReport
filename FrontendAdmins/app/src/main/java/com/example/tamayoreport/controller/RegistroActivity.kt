@@ -11,6 +11,7 @@ import android.widget.Toast
 import com.example.tamayoreport.R
 import com.example.tamayoreport.Utils
 import com.example.tamayoreport.model.Model
+import com.example.tamayoreport.model.entities.Admin
 import com.example.tamayoreport.model.entities.User
 
 import com.example.tamayoreport.model.repository.responseinterface.IAddUser
@@ -56,7 +57,7 @@ class RegistroActivity : AppCompatActivity() {
                     Toast.makeText(this, "La contraseña debe ser de mínimo 7 caracteres", Toast.LENGTH_LONG).show()
                 }
                 else {
-
+                    /*
                     val user  = User(
                         id = "",
                         name = name,
@@ -65,8 +66,10 @@ class RegistroActivity : AppCompatActivity() {
                         admintype = adminType,
                         admin = true,
                         online = false
+                    )*/
+                    val user = User(
+                        name, email, password, Admin(adminType, true),false, ""
                     )
-
 
 
                     Model(Utils.getToken(this)).addUsers(user, object : IAddUser {

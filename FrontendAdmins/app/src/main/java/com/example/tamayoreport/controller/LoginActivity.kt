@@ -13,6 +13,7 @@ import android.widget.Toast
 import com.example.tamayoreport.R
 import com.example.tamayoreport.Utils
 import com.example.tamayoreport.model.Model
+import com.example.tamayoreport.model.entities.Admin
 import com.example.tamayoreport.model.entities.JwtToken
 import com.example.tamayoreport.model.entities.User
 import com.example.tamayoreport.model.repository.RemoteRepository
@@ -36,8 +37,8 @@ class LoginActivity : AppCompatActivity() {
             startActivity(switchActivityIntent);*/
             val email = findViewById<EditText>(R.id.txtCorreo).text.toString()
             val password = findViewById<EditText>(R.id.txtContra).text.toString()
-
-            val user = User("","anyname", email, password, "",false, true)
+            val admin = Admin("anytype", false)
+            val user = User("anyname", email, password,admin,false,"")
 
             Model(Utils.getToken(this)).login(user, object : ILogin {
                 override fun onSuccess(token: JwtToken?) {
