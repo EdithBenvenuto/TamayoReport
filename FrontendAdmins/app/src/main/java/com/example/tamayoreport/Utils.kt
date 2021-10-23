@@ -7,7 +7,7 @@ import com.example.tamayoreport.model.entities.JwtToken
 
 class Utils {
     companion object {
-        //val BASE_URL = "http://172.31.0.21:3000/"
+        
         val BASE_URL = "http://100.24.228.237:10118/"
         val PRODUCT_ID_KEY = "productId"
 
